@@ -1,0 +1,2 @@
+dbfread >= 2.0.6
+hashlib >= 20081119 

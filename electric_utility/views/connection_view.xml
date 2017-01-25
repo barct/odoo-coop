@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="connection_form_view" model="ir.ui.view">
+			<field name="name">connection.form.view</field>
+			<field name="model">electric_utility.connection</field>
+			<field name= "arch" type = "xml">
+				<form string="Connections Information">
+					<sheet>
+					<group><group>
+						<field name="number"/>
+						<field name="sector_id"/>
+						<field name="measurement_sequence"/>
+					</group>
+					<group>
+						<field name="meter_serial_number"/>
+						<field name="meter_brand"/>
+						<field name="meter_type"/>
+						<field name="meter_installation_date"/>
+					</group>
+					<group>
+						<field name="service_address_street"/>
+						<field name="service_address_neighborhood"/>
+						<field name="service_address_city"/>
+						<field name="service_address_lat"/>
+						<field name="service_address_lng"/>
+						<field name="cadastral_nomenclature"/>
+					</group></group>
+					<notebook>
+							<page string="Contrats" name="contrats">
+								<field name="contrat_ids">
+									<tree default_order="date_start desc">
+										<field name="date_start"/>
+										<field name="date_end"/>
+										<field name="contrat_number"/>
+										<field name="client_id"/>
+										<field name="service_category_id"/>
+										<field name="service_status"/>
+									</tree>
+								</field>
+							</page>
+					</notebook>
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="connection_tree_view" model="ir.ui.view">
+			<field name="name">connection.tree.view</field>
+			<field name="model">electric_utility.connection</field>
+			<field name= "arch" type = "xml">
+				<tree string="Connections Information">
+					<field name="number"/>
+					<field name="sector_id"/>
+					<field name="service_address_street"/>
+					<field name="service_address_neighborhood"/>
+					<field name="service_address_city"/>
+					<field name="measurement_sequence"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_connection" model="ir.actions.act_window">
+			<field name="name">Connections List</field>
+			<field name="res_model">electric_utility.connection</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_electric_utility_base" name="Electric Utility"/>
+		<menuitem id="menu_electric_utility_connections" parent="menu_electric_utility_base" name="Connections"/>
+		<menuitem id="menu_electric_utility_connections_list" parent="menu_electric_utility_connections" name="Connections List" action="action_connection"/>
+	</data>
+</openerp>

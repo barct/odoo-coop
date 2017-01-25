@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="infocoop.mirror_tables_tree" model="ir.ui.view">
+			<field name="name">infocoop.mirror_tables.tree</field>
+			<field name="model">infocoop.mirror_tables</field>
+			<field name="arch" type="xml">
+				<tree string="Infocoop Mirror Tables" colors="green:out_of_date==False;red:out_of_date==True">
+					<field name="name" />
+					<field name="records" />
+					<field name="last_sync" />
+					<field name="file_modified" />
+					<field name="out_of_date" />
+					<button string="sync now!" type="object"
+					    name="sync_selected" class="oe_highlight"/>
+					<!-- <button name="sync_tablas" string="Sync Tablas table for Infocoop" type="object" /> -->
+				</tree>
+			</field>
+		</record>
+
+		<record id="infocoop.mirror_tables_action" model="ir.actions.act_window">
+			<field name="name">Infocoop Mirror Tables Config</field>
+			<field name="res_model">infocoop.mirror_tables</field>
+			<field name="view_id" ref="infocoop.mirror_tables_tree"/>
+			<field name="view_mode">tree</field>
+			<field name="target">inline</field>
+		</record>
+
+
+		<menuitem id="infocoop.mirror_tables_menu_config" parent="infocoop.menu_config" name="Mirror Tables Sync" action="infocoop.mirror_tables_action"/>
+	</data>
+</openerp>

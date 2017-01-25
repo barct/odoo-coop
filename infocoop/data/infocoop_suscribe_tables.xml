@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data >
+		<record model="infocoop.suscribe_tables" id="infocoop.socios_contrat">
+			<field name="name">infocoop.socios_contrat</field>
+		</record>
+		<record model="infocoop.suscribe_tables" id="infocoop.socios_connection">
+			<field name="name">infocoop.socios_connection</field>
+		</record>
+		<record model="infocoop.suscribe_tables" id="infocoop.socios_member">
+			<field name="name">infocoop.socios_member</field>
+		</record>
+		<record model="infocoop.suscribe_tables" id="infocoop.liquidac_invoice">
+			<field name="name">infocoop.liquidac_invoice</field>
+		</record>
+	</data>
+</openerp>

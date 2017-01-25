@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data >
+		<record model="infocoop.mirror_tables" id="infocoop.ingresos">
+			<field name="name">infocoop_ingresos</field>
+			<field name="dbf_file">ingresos.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.socios">
+			<field name="name">infocoop_socios</field>
+			<field name="dbf_file">socios.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.suscrip">
+			<field name="name">infocoop_suscrip</field>
+			<field name="dbf_file">suscrip.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.tablas">
+			<field name="name">infocoop_tablas</field>
+			<field name="dbf_file">tablas.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.liquidac">
+			<field name="name">infocoop_liquidac</field>
+			<field name="dbf_file">liquidac.dbf</field>
+		</record>
+
+		<record model="infocoop.mirror_tables" id="infocoop.auxiliar">
+			<field name="name">infocoop_auxiliar</field>
+			<field name="dbf_file">auxiliar.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.ctacte">
+			<field name="name">infocoop_ctacte</field>
+			<field name="dbf_file">ctacte.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.tab_fact">
+			<field name="name">infocoop_tab_fact</field>
+			<field name="dbf_file">tab_fact.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.modi_soc">
+			<field name="name">infocoop_modi_soc</field>
+			<field name="dbf_file">modi_soc.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.red_usu">
+			<field name="name">infocoop_red_usu</field>
+			<field name="dbf_file">red_usu.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.estados">
+			<field name="name">infocoop_estados</field>
+			<field name="dbf_file">estados.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.acciones">
+			<field name="name">infocoop_acciones</field>
+			<field name="dbf_file">acciones.dbf</field>
+		</record>
+	</data>
+</openerp>

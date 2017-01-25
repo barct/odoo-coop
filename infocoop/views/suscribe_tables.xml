@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="infocoop.suscribe_tables_tree" model="ir.ui.view">
+			<field name="name">infocoop.suscribe_tables.tree</field>
+			<field name="model">infocoop.suscribe_tables</field>
+			<field name="arch" type="xml">
+				<tree string="Infocoop Suscribe Tables">
+					<field name="name" />
+					<field name="records" />
+					<field name="last_total_sync" />
+					<field name="outs_of_date" />
+					<button string="sync now!" type="object"
+					    name="sync_selected" class="oe_highlight"/>
+					<!-- <button name="sync_tablas" string="Sync Tablas table for Infocoop" type="object" /> -->
+				</tree>
+			</field>
+		</record>
+
+		<record id="infocoop.suscribe_tables_action" model="ir.actions.act_window">
+			<field name="name">Infocoop suscribe Tables Config</field>
+			<field name="res_model">infocoop.suscribe_tables</field>
+			<field name="view_id" ref="infocoop.suscribe_tables_tree"/>
+			<field name="view_mode">tree</field>
+			<field name="target">inline</field>
+		</record>
+
+
+		<menuitem id="infocoop.suscribe_tables_menu_config" parent="infocoop.menu_config" name="Suscribe Tables" action="infocoop.suscribe_tables_action"/>
+	</data>
+</openerp>

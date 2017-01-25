@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<menuitem id="infocoop.menu_config" name="Infocoop"  parent="base.menu_config"/>
+	</data>
+</openerp>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- INHERITED FORM -->
+        <record id="view_member_form" model="ir.ui.view">
+            <field name="name">coop_member.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">        
+                <page string="Contacts" position="after">
+                    <page string="Membership Information">
+                        <group>
+                            <group>
+                                <field name="membership_number"/>
+                                <field name="admission_minutes_id"/>
+                                <field name="affiliation_date"/>
+                                <field name="disaffiliation_date"/>
+                                <field name="disaffiliation_minutes_id"/>
+                                <field name="reasons_for_disaffiliation"/>  
+                            </group>
+                            <button name="get_next_membership_number" string="Get next membership number"  type="object" class="oe_link oe_inline" />
+                        </group>
+                       </page>                 
+                </page>                      
+            </field>
+        </record>
+
+    </data>
+</openerp>

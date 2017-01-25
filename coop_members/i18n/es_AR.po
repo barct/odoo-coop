@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* members
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-14 19:20+0000\n"
+"PO-Revision-Date: 2016-11-14 19:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_AR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: members
+#: field:res.partner,admission_minutes_id:0
+msgid "Admission Minutes"
+msgstr "Acta de Admisión"
+
+#. module: members
+#: field:res.partner,affiliation_date:0
+msgid "Affiliation Date"
+msgstr "Fecha de Afiliación"
+
+#. module: members
+#: field:minutes,book_number:0
+msgid "Book N"
+msgstr "Libro N°"
+
+#. module: members
+#: view:res.partner:members.view_member_form
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: members
+#: field:minutes,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: members
+#: field:minutes,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: members
+#: field:minutes,date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: members
+#: field:res.partner,disaffiliation_minutes_id:0
+msgid "Disaffiliation Minutes"
+msgstr ""
+
+#. module: members
+#: field:res.partner,disaffiliation_date:0
+msgid "Disffiliation Date"
+msgstr "Fecha de Desafiliación"
+
+#. module: members
+#: field:minutes,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: members
+#: field:minutes,write_uid:0
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: members
+#: field:minutes,write_date:0
+msgid "Last Updated on"
+msgstr "Actualizado el"
+
+#. module: members
+#: view:res.partner:members.view_member_form
+msgid "Membership Information"
+msgstr "Información de Socio"
+
+#. module: members
+#: field:res.partner,membership_number:0
+msgid "Membership N"
+msgstr "Socio N°"
+
+#. module: members
+#: field:minutes,number:0
+msgid "Minutes N"
+msgstr "Acta N°"
+
+#. module: members
+#: model:ir.model,name:members.model_res_partner
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: members
+#: field:res.partner,reasons_for_disaffiliation:0
+msgid "Reasons for Disaffiliation "
+msgstr "Razones de Desafiliación"
+

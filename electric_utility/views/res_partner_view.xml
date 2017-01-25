@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- INHERITED FORM -->
+		<record id="view_member_form" model="ir.ui.view">
+			<field name="name">electric_utility.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">        
+				<page string="Contacts" position="after">
+					<page string="Contrats" name="contrats">
+						<field name="contrat_ids">
+							<tree default_order="date_start desc">
+								<field name="date_start"/>
+								<field name="date_end"/>
+								<field name="contrat_number"/>
+								<field name="client_id"/>
+								<field name="service_category_id"/>
+								<field name="service_status"/>
+							</tree>
+						</field>
+					</page>               
+				</page>                      
+			</field>
+		</record>
+	</data>
+</openerp>
