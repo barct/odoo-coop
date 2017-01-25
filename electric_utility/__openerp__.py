@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Electric Public Utility',
-    'version': '8.0.0.0.1',
+    'version': '9.0.0.0.1',
     'category': 'Tools',
     'sequence': 1,
     'summary': '',
