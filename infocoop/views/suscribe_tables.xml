@@ -22,7 +22,7 @@
 			<field name="res_model">infocoop.suscribe_tables</field>
 			<field name="view_id" ref="infocoop.suscribe_tables_tree"/>
 			<field name="view_mode">tree</field>
-			<field name="target">inline</field>
+			<field name="target">current</field>
 		</record>
 
 
