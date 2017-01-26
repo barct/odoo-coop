@@ -7,8 +7,8 @@
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form" />
 			<field name="arch" type="xml">        
-				<page string="Contacts" position="after">
-					<page string="Contrats" name="contrats">
+				<page name="sales_purchases" position="after">
+					<page name="contrats" string="Contrats">
 						<field name="contrat_ids">
 							<tree default_order="date_start desc">
 								<field name="date_start"/>

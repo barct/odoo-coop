@@ -1,0 +1,3 @@
+id,sequence,code,name,document_letter_id/id,report_name,internal_type,doc_code_prefix,localization,validator_id/id
+l10n_ar_account.dc_a_ls,165,17,LIQUIDACION DE SERVICIOS PUBLICOS CLASE A,l10n_ar_account.dl_a,LIQUIDACION,invoice,LSP-A,argentina,l10n_ar_account.validator_numero_factura
+l10n_ar_account.dc_b_ls,166,18,LIQUIDACION DE SERVICIOS PUBLICOS CLASE B,l10n_ar_account.dl_b,LIQUIDACION,invoice,LSP-B,argentina,l10n_ar_account.validator_numero_factura

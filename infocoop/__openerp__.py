@@ -39,7 +39,7 @@ Which is a development in visual fox pro with dbf database
     'depends': [
         'base',
         'coop_members',
-        'l10n_ar_invoice',
+        'l10n_ar_afipws_fe',
         'electric_utility',
     ],
     'external_dependencies': {

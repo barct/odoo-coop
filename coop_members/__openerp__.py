@@ -37,6 +37,7 @@ TODO
     ],
     'depends': [
         'base',
+        'partner_contact_gender'
     ],
     'data': [
         'member_view.xml',

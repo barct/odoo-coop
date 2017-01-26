@@ -43,16 +43,18 @@ through the regulator ERSeP.
     'depends': [
         'base',
  #       'coop_members',
-        'l10n_ar_invoice',
+        'l10n_ar_afipws_fe',
+        'l10n_ar_account',
     ],
     'external_dependencies': {
  #       'python': ['dbfread', 'hashlib'],
     },
     'data': [
+        'data/account.document.type.csv',
+
         'views/connection_view.xml',
         'views/contrat_view.xml',
         'views/res_partner_view.xml',
-        'data/afip_document_class.xml',
  #       'res_config_view.xml',
         'security/ir.model.access.csv',
     ],
