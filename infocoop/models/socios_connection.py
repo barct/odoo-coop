@@ -18,6 +18,8 @@ class SociosConnection(models.Model, Suscriber):
 	master_id = fields.Many2one('infocoop_socios', ondelete='cascade')
 	slave_id = fields.Many2one('electric_utility.connection')
 
+	mirror_dependencies = ["infocoop_socios","infocoop_tablas","infocoop_red_usu"]
+
 	def filter(self):
 		return [("activo", "=", "S"),]
 	

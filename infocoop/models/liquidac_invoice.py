@@ -17,6 +17,8 @@ class LiquidacInvoice(models.Model, Suscriber):
 	
 	master_id = fields.Many2one('infocoop_liquidac', ondelete='cascade')
 	slave_id = fields.Many2one('account.invoice')
+
+	mirror_dependencies = ["infocoop_liquidac",]
 	
 	
 	def prepare_row_fields(self, row):
@@ -41,8 +43,8 @@ class LiquidacInvoice(models.Model, Suscriber):
 		period_id = self.env["account.period"].search([("date_start","<=",period_date),],limit=1, order="date_start desc").id
 
 		#internal_number = "DV/2016/" + str(row.numero), #TODO: get journal book
-		afip_document_class = self.env.ref('electric_utility.dc_b_lsp')
-		journal_document_class = self.env["account.journal.afip_document_class"].search([("afip_document_class_id","=",afip_document_class.id),],limit=1)
+		document_type_id = self.env.ref('l10n_ar_account.dc_b_ls')
+		#journal_document_class = self.env["account.journal.afip_document_class"].search([("afip_document_class_id","=",afip_document_class.id),],limit=1)
 
 		prefix = journal_document_class.sequence_id.prefix
 
@@ -55,6 +57,10 @@ class LiquidacInvoice(models.Model, Suscriber):
 		return {
 		"number": internal_number , #TODO: get journal book
 		#"supplier_invoice_number": internal_number,
+		"date_invoice": None, # TODO: find in tabla_fact
+		"date_due": None, # TODO: find in tabla_fact
+		"journal_id": journal_id.id,
+
 		"company_id": self.env.user.company_id.id,
 		"currency_id": self.env.user.company_id.currency_id.id,
 		"amount_untaxed": row.neto_serv,
@@ -62,7 +68,7 @@ class LiquidacInvoice(models.Model, Suscriber):
 		"amount_total": row.neto_serv + row.neto_imp,
 		"partner_id": partner_id.id,
 		"commercial_partner_id": partner_id.id,
-		"journal_id": journal_id.id,
+		
 		"state": "draft",
 		"account_id":contrat.account_id.id,
 		#"type": "out_invoice",
@@ -70,10 +76,11 @@ class LiquidacInvoice(models.Model, Suscriber):
 		"date_invoice": period_date, ##TODO: get from settlements
 		"sent": False,
 		"period_id": period_id,
-		"afip_document_class_id": afip_document_class.id,
-		"afip_document_number": str(prefix) + str(row.numero),
-		"journal_document_class_id": journal_document_class.id,
-		"responsability_id": partner_id.responsability_id.id,
+		"document_type_id": document_type_id.id,
+		"journal_document_type_id": journal_document_class.id,
+		"document_number": str(prefix) + str(row.numero),
+		
+		"afip_responsability_type_id": partner_id.afip_responsability_type_id.id,
 
 		}
 

@@ -7,6 +7,7 @@ from openerp import models, fields, api, osv
 from debug import oprint
 from sys import stdout
 from utils import doc_number_normalize, name_clean
+from openerp.exceptions import Warning
 
 class Suscriber():
 	'''
@@ -22,6 +23,16 @@ class Suscriber():
 		'''
 			Iterates all master records and update its corresponding slave records 
 		'''
+		#check if all mirror_dependencies are updated	
+		deps=self.env["infocoop.mirror_tables"].search([("name","in",self.mirror_dependencies),])
+		if deps:
+			dep_str=""
+			for d in deps:
+				if d.out_of_date:
+					dep_str+=d.name + ", "
+			if dep_str!="":
+				raise Warning("Out of date mirror_dependencies: %s" % dep_str)
+		
 		total = self.env[self.master_id._name].search_count(self.filter())
 		count = 0
 		ii_ids = self.env[self.master_id._name].search(self.filter(), limit=20)
@@ -92,7 +103,7 @@ class Suscriber():
 		self.slave_id.unlink()
 
 	def prepare_row_fields(self, row):
-		pass #must be overwrite
+		raise Warning("prepare_row_fields funcion must be overwrite")
 
 	def filter(self):
 		return []

@@ -39,6 +39,8 @@ class infocoop_mirror_tables(models.Model):
 	def get_out_of_date(self):
 		self.out_of_date = (self.last_sync<=self.file_modified)
 
+	
+
 
 
 

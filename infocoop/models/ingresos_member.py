@@ -16,6 +16,7 @@ class IngresosMember(models.Model, Suscriber):
 	master_id = fields.Many2one('infocoop_ingresos', ondelete='cascade')
 	slave_id = fields.Many2one('res.partner')
 
+	mirror_dependencies = ["infocoop_ingresos","infocoop_tablas"]
 
 	def prepare_row_fields(self, row):
 

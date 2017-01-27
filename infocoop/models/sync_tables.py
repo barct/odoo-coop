@@ -486,6 +486,6 @@ class infocoop_acciones(models.Model, mirror_table):
 
 
 	def dbf_rows(self):
-		for row in super(infocoop_red_usu, self).dbf_rows():
+		for row in super(infocoop_acciones, self).dbf_rows():
 			if row["NROSOC"]<9000:
 				yield row

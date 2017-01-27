@@ -20,6 +20,8 @@ class SociosConnection(models.Model, Suscriber):
 	master_id = fields.Many2one('infocoop_socios', ondelete='cascade')
 	slave_id = fields.Many2one('electric_utility.contrat')
 
+	mirror_dependencies = ["infocoop_socios","infocoop_tablas","infocoop_red_usu","infocoop_ingresos","infocoop_modi_soc",]
+
 	
 	def prepare_row_fields(self, row):
 		

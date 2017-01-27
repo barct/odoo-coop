@@ -18,6 +18,9 @@ class SociosMember(models.Model, Suscriber):
 	master_id = fields.Many2one('infocoop_socios', ondelete='cascade')
 	slave_id = fields.Many2one('res.partner')
 
+	mirror_dependencies = ["infocoop_socios","infocoop_tablas","infocoop_suscrip","infocoop_ingresos",]
+
+
 	def prepare_row_fields(self, row):
 		if not row:
 			raise Exception("%s: row %s no válida" % (self._name,row))
