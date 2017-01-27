@@ -8,7 +8,8 @@ from openerp import models, fields, api
 class Settlement(models.Model):
 	_name = "electric_utility.settlement"
 
-	period_id = fields.Many2one("account.period", "Period")
-	settlement_date = fields.Date("Settlement Date")
+	period_id = fields.Many2one("date.range", "Period")
+	
+	settlement_date = fields.Date("Settlement Date", required=True)
 	due_date = fields.Date("Due Date")
 	

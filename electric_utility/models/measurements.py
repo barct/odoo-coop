@@ -12,7 +12,7 @@ class Measurements(models.Model):
 	_name = "electric_utility.measurement"
 
 	contrat_id = fields.Many2one("electric_utility.contrat", required=True)
-	period_id = fields.Many2one('account.period', 'Period', required=True,readonly=True, states={'draft': [('readonly', False)]},)
+	period_id = fields.Many2one('date.range', 'Period', required=True,readonly=True, states={'draft': [('readonly', False)]},)
 	last_measure = fields.Integer("Last Measure", required=True)
 	last_measure_date = fields.Date("Last Measure Date", required=True)
 
