@@ -59,3 +59,20 @@ def name_clean(name):
 	name = re.sub('[*]', '', name)
 	name = re.sub('\s+', ' ', name)
 	return name.title()
+
+
+def insert_or_update(env, model,constraints,data):
+	domain = list()
+	for c in constraints:
+		domain.append((c,"=",constraints[c]))
+	ids = env[model].search(domain)
+	if ids:
+		ids.write(data)
+		print "old %s" % data
+	else:
+		data.update(constraints)
+		obj = env[model].create(data)
+		print "new %s" % obj
+
+
+

@@ -35,7 +35,7 @@ class Suscriber():
 		
 		total = self.env[self.master_id._name].search_count(self.filter())
 		count = 0
-		ii_ids = self.env[self.master_id._name].search(self.filter(), limit=20)
+		ii_ids = self.env[self.master_id._name].search(self.filter())
 		for row in ii_ids:
 			self.sync_row(row)
 			stdout.write("\r %s: %i de %i" % (self._name,count,total))
@@ -90,23 +90,30 @@ class Suscriber():
 
 
 	def create_from_infocoop(self, row):
-		
+		'''When table mirror has a new record do this: Create a new record  master-slave'''
 		new = self.env[self.slave_id._name].create((self.prepare_row_fields(row)))
-		return self.create({"slave_id":new.id, "master_id": row.id, "hashcode": row.hashcode})
-		
+		obj = self.create({"slave_id":new.id, "master_id": row.id, "hashcode": row.hashcode})
+		self.finally_row_fields(row)
+		return obj
 
 	def update_from_infocoop(self, row):
+		'''When table mirror has a change in a record do this: Send to update process'''
 		self.slave_id.write(self.prepare_row_fields(row))
+		self.finally_row_fields(row)
 		self.hashcode=row.hashcode
 
 	def delete_from_infocoop(self, row):
+		'''When table mirror has deleted record, do this: Delete slave record'''
 		self.slave_id.unlink()
 
 	def prepare_row_fields(self, row):
-		raise Warning("prepare_row_fields funcion must be overwrite")
+		raise Exception("prepare_row_fields funcion must be overwrite")
+
+	def finally_row_fields(self, row):
+		return
 
 	def filter(self):
 		return []
 
-	def post_process(self):
-		return
+#	def post_process(self):
+#		return

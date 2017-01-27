@@ -6,7 +6,7 @@
 from openerp import models, fields, api
 from debug import oprint
 
-from utils import doc_number_normalize, name_clean
+from utils import doc_number_normalize, name_clean, insert_or_update
 import utils
 from suscriber import Suscriber
 import re
@@ -29,7 +29,7 @@ class SociosMember(models.Model, Suscriber):
 		doc_number = None
 		doc_type=None
 		if row.cuit:
-			doc_type = self.env["afip.document_type"].search((["active","=",True],["code","=","CUIT"]), limit=1).id
+			doc_type = self.env["res.partner.id_category"].search((["active","=",True],["code","=","CUIT"]), limit=1)
 			doc_number = re.sub('[-]','',row.cuit)
 
 
@@ -51,11 +51,19 @@ class SociosMember(models.Model, Suscriber):
 				#get doc data from ingresos
 				doc_type, doc_number = doc_number_normalize(ingreso.tipo_doc, ingreso.nro_doc)
 		
-				ids = self.env["afip.document_type"].search((["active","=",True],["code","=",doc_type]), limit=1)
+				ids = self.env["res.partner.id_category"].search((["active","=",True],["code","=",doc_type]), limit=1)
 				if ids:
-					doc_type=ids[0].id
+					doc_type=ids[0]
 				else:
 					doc_type=None
+
+		if doc_type:
+			try: 
+				doc_type.validate_id_number(doc_number)
+				doc_type=doc_type.id
+			except:
+				doc_type=None
+
 
 			data["affiliation_date"]=ingreso.fec_ingr
 			data["membership_number"]=row.nrosoc
@@ -64,7 +72,7 @@ class SociosMember(models.Model, Suscriber):
 
 		#TODO: This could be more efficient
 		code = utils.afip_resposability_equivalences(row.codiva)
-		responsability_id = self.env["afip.responsability"].search((["code","=",code],["active","=",1]), limit=1).id
+		responsability_id = self.env["afip.responsability.type"].search((["code","=",code],["active","=",1]), limit=1).id
 		if code == "1" or code == "4": #RI or Exento
 			data["is_company"] = True
 
@@ -78,17 +86,51 @@ class SociosMember(models.Model, Suscriber):
 			data["name"] = name_clean(row.nombre)
 		else:
 			data["name"] = "(desconocido)"
-		data["document_number"]=doc_number
-		data["document_type_id"]=doc_type
+		
+		data["main_id_number"]=doc_number
+		data["main_id_category_id"]=doc_type
 		data["phone"]=row.telefono
 		data["comment"]=row.observacio
 		
 		data["city"]=city
 		data["street"]=row.direccion
 		data["zip"]=row.codpostal
-		data["responsability_id"]=responsability_id
+		data["afip_responsability_type_id"]=responsability_id
 
 		return data
+
+	# def finally_row_fields(self, row):
+	# 	#self.slave_id
+
+	# 	doc_number = None
+	# 	doc_type=None
+	# 	if row.cuit:
+	# 		doc_type = self.env["res.partner.id_category"].search((["active","=",True],["code","=","CUIT"]), limit=1).id
+	# 		doc_number = re.sub('[-]','',row.cuit)
+
+	# 		insert_or_update(
+	# 				env=self.env,
+	# 				model="res.partner.id_number",
+	# 				constraints={"partner_id":self.slave_id.id, "category_id":doc_type},
+	# 				data={"name": doc_number })
+
+		
+	# 	#get doc data from ingresos
+	# 	ingreso = self.env["infocoop_ingresos"].search([("socio","=",row.nrosoc),],limit=1)
+	# 	if ingreso:
+	# 		doc_type, doc_number = doc_number_normalize(ingreso.tipo_doc, ingreso.nro_doc)
+	# 		ids = self.env["res.partner.id_category"].search((["active","=",True],["code","=",doc_type]), limit=1).id
+	# 		if ids:
+	# 			doc_type=ids
+	# 			insert_or_update(
+	# 			env=self.env,
+	# 			model="res.partner.id_number",
+	# 			constraints={"partner_id":self.slave_id.id, "category_id":doc_type},
+	# 			data={"name": doc_number })
+				
+
+
+
 
 	def get_slave_form_row(self, row):
 		socio = self.env["infocoop_ingresos"].search([("socio","=",row.nrosoc),], limit=1).socio
