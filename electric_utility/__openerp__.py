@@ -45,6 +45,7 @@ through the regulator ERSeP.
  #       'coop_members',
         'l10n_ar_afipws_fe',
         'l10n_ar_account',
+        'date_range',
     ],
     'external_dependencies': {
  #       'python': ['dbfread', 'hashlib'],
