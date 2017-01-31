@@ -41,6 +41,7 @@ class SociosMember(models.Model, Suscriber):
 
 	
 		minutes_id = None
+		gender = None
 		ingreso = self.env["infocoop_ingresos"].search([("socio","=",row.nrosoc),],limit=1)
 		if ingreso:
 			minutes_id = self.env["minutes"].search((["number","=",ingreso.acta],), limit=1).id
@@ -57,11 +58,18 @@ class SociosMember(models.Model, Suscriber):
 				else:
 					doc_type=None
 
+			if ingreso.sexo=="M": data["gender"] = "male"
+			elif ingreso.sexo == "F": data["gender"] = "female"
+
+			data["birthdate"] = ingreso.fec_nacim
+
+
 		if doc_type:
 			try: 
 				doc_type.validate_id_number(doc_number)
 				doc_type=doc_type.id
 			except:
+				data["comment"]="Identity validation fail: %s %s " % (doc_type, doc_number)
 				doc_type=None
 
 
@@ -96,6 +104,7 @@ class SociosMember(models.Model, Suscriber):
 		data["street"]=row.direccion
 		data["zip"]=row.codpostal
 		data["afip_responsability_type_id"]=responsability_id
+		data["gender"]=gender
 
 		return data
 

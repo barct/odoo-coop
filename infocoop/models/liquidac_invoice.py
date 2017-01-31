@@ -40,24 +40,24 @@ class LiquidacInvoice(models.Model, Suscriber):
 		month=int(_sp[0])
 		year = int(_sp[1])
 		period_date = datetime.date(year=year, month=month, day=1)
-		period_id = self.env["account.period"].search([("date_start","<=",period_date),],limit=1, order="date_start desc").id
+		#period_id = self.env["account.period"].search([("date_start","<=",period_date),],limit=1, order="date_start desc").id
 
 		#internal_number = "DV/2016/" + str(row.numero), #TODO: get journal book
 		document_type_id = self.env.ref('l10n_ar_account.dc_b_ls')
 		#journal_document_class = self.env["account.journal.afip_document_class"].search([("afip_document_class_id","=",afip_document_class.id),],limit=1)
 
-		prefix = journal_document_class.sequence_id.prefix
+		#prefix = journal_id.sequence_id.prefix
 
-		sequence = journal_id.sequence_id
-		d = sequence._interpolation_dict()
-		interpolated_prefix = sequence._interpolate(sequence['prefix'], d)
-		interpolated_suffix = sequence._interpolate(sequence['suffix'], d)
-		internal_number = interpolated_prefix + '%%0%sd' % sequence['padding'] % row.numero + interpolated_suffix
+		#sequence = journal_id.sequence_id
+		#d = sequence._interpolation_dict()
+		#interpolated_prefix = sequence._interpolate(sequence['prefix'], d)
+		#interpolated_suffix = sequence._interpolate(sequence['suffix'], d)
+		#internal_number = interpolated_prefix + '%%0%sd' % sequence['padding'] % row.numero + interpolated_suffix
 
 		return {
-		"number": internal_number , #TODO: get journal book
+		#"number": internal_number , #TODO: get journal book
 		#"supplier_invoice_number": internal_number,
-		"date_invoice": None, # TODO: find in tabla_fact
+		"date_invoice": period_date, # TODO: find in tabla_fact
 		"date_due": None, # TODO: find in tabla_fact
 		"journal_id": journal_id.id,
 
@@ -70,15 +70,15 @@ class LiquidacInvoice(models.Model, Suscriber):
 		"commercial_partner_id": partner_id.id,
 		
 		"state": "draft",
-		"account_id":contrat.account_id.id,
+		"account_id":journal_id.default_debit_account_id.id,
 		#"type": "out_invoice",
-		"internal_number":  internal_number,
+		#"internal_number":  internal_number,
 		"date_invoice": period_date, ##TODO: get from settlements
 		"sent": False,
-		"period_id": period_id,
+		#"period_id": period_id,
 		"document_type_id": document_type_id.id,
-		"journal_document_type_id": journal_document_class.id,
-		"document_number": str(prefix) + str(row.numero),
+		#"journal_document_type_id": journal_document_class.id,
+		"document_number": str(row.numero),
 		
 		"afip_responsability_type_id": partner_id.afip_responsability_type_id.id,
 
@@ -92,8 +92,7 @@ class LiquidacInvoice(models.Model, Suscriber):
 		month=int(_sp[0])
 		year = int(_sp[1])
 		period_date = datetime.date(year=year, month=month, day=1)
-		period_id = self.env["account.period"].search([("date_start","<=",period_date),],limit=1, order="date_start desc").id
-
-		return self.env["account.invoice"].search([("contrat_id.contrat_number","=",str(row.medidor)+str(row.orden)),("period_id","=",period_id)], limit=1)	
+		
+		return self.env["account.invoice"].search([("contrat_id.contrat_number","=",str(row.medidor)+str(row.orden)),("document_number","=",row.numero)], limit=1)	
 
 	
