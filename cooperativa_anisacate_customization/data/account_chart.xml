@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>   
+		<record model="account.account" id="ri_anisacate_anisacate">
+			<field name="code">2.1.02.04.010</field>
+			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+			<field name="name">Alumbrado Público - Anisacate</field>
+			<field name="internal_type">other</field>
+		</record>
+		<record model="account.account" id="ri_anisacate_valle">
+			<field name="code">2.1.02.04.020</field>
+			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+			<field name="name">Alumbrado Público - Valle de Anisacate</field>
+			<field name="internal_type">other</field>
+		</record>
+		<record model="account.account" id="ri_anisacate_la_bolsa">
+			<field name="code">2.1.02.04.030</field>
+			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+			<field name="name">Alumbrado Público - La Bolsa</field>
+			<field name="internal_type">other</field>
+		</record>
+		<record model="account.account" id="ri_anisacate_dique_chico">
+			<field name="code">2.1.02.04.040</field>
+			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+			<field name="name">Alumbrado Público - Dique Chico</field>
+			<field name="internal_type">other</field>
+		</record>
+	</data>
+</openerp>

@@ -43,17 +43,20 @@ through the regulator ERSeP.
         'electric_utility',
         'coop_members',
         'ersep_regulations',
-        'infocoop',
     ],
     'external_dependencies': {
  #       'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        #'data/account_chart.xml',
-        #'data/account_tax.xml',
+        'data/account_chart.xml',
+        'data/account_tax.xml',
+        'data/electric_utility_city.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
 }

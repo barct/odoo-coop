@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>    
+        <record model="account.tax" id="anisacate_tax_anisacate">
+            <field name="name">OGI Alumbrado Público - Anisacate</field>
+            <field name="description">A°P° - Anisacate</field>
+            <field name="account_id" ref="ri_anisacate_anisacate"/>
+            <field name="refund_account_id" ref="ri_anisacate_anisacate"/>
+            <field name="tax">electric_service_perception</field>
+            <field name="tax_group_id" ref="electric_utility.tax_group_street_lighting"/>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.20</field>
+        </record>
+        <record model="account.tax" id="anisacate_tax_valle">
+            <field name="name">RC Alumbrado Público - Valle de Anisacate</field>
+            <field name="description">A°P Valle de Anisacate</field>
+            <field name="account_id" ref="ri_anisacate_valle"/>
+            <field name="refund_account_id" ref="ri_anisacate_valle"/>
+            <field name="tax">electric_service_perception</field>
+            <field name="tax_group_id" ref="electric_utility.tax_group_street_lighting"/>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.10</field>
+        </record>
+        <record model="account.tax" id="anisacate_tax_la_bolsa">
+            <field name="name">RC Alumbrado Público - La Bolsa</field>
+            <field name="description">A°P La Bolsa</field>
+            <field name="account_id" ref="ri_anisacate_la_bolsa"/>
+            <field name="refund_account_id" ref="ri_anisacate_la_bolsa"/>
+            <field name="tax">electric_service_perception</field>
+            <field name="tax_group_id" ref="electric_utility.tax_group_street_lighting"/>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.15</field>
+        </record>
+        <record model="account.tax" id="anisacate_tax_dique_chico">
+            <field name="name">RC Alumbrado Público - Dique Chico</field>
+            <field name="description">A°P Dique Chico</field>
+            <field name="account_id" ref="ri_anisacate_dique_chico"/>
+            <field name="refund_account_id" ref="ri_anisacate_dique_chico"/>
+            <field name="tax">electric_service_perception</field>
+            <field name="tax_group_id" ref="electric_utility.tax_group_street_lighting"/>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">0.20</field>
+        </record>
+    </data>
+</openerp>

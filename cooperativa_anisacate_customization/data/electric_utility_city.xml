@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>    
+        <record model="electric_utility.city" id="anisacate_city_anisacate">
+            <field name="name">Anisacate</field>
+        </record>
+         <record model="electric_utility.city" id="anisacate_city_dique_chico">
+            <field name="name">Dique Chico</field>
+        </record>
+         <record model="electric_utility.city" id="anisacate_city_la_bolsa">
+            <field name="name">La Bolsa</field>
+        </record>
+         <record model="electric_utility.city" id="anisacate_city_valle">
+            <field name="name">Valle de Anisacate</field>
+        </record>
+    </data>
+</openerp>

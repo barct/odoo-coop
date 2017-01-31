@@ -5,37 +5,37 @@
 			<field name="code">2.1.02.03.010</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Tasa de Reg.Dec.2298/00</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 		<record model="account.account" id="ri_ersep_fuego">
 			<field name="code">2.1.02.03.020</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Fondo Lucha Contra el Fuego</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 		<record model="account.account" id="ri_ersep_arroyo_cabral">
 			<field name="code">2.1.02.03.030</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Aporte Transitorio Arroyo Cabral</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 		<record model="account.account" id="ri_ersep_ctoidnnp">
 			<field name="code">2.1.02.03.040</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Plan Desarollo Norte y Noroeste Prov.</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 		<record model="account.account" id="ri_ersep_coie">
 			<field name="code">2.1.02.03.050</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Cargo p/Obras de Infr. Eléctrica</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 		<record model="account.account" id="ri_ersep_seguridad_electrica">
 			<field name="code">2.1.02.03.060</field>
 			<field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
 			<field name="name">Tasa Seguridad Eléctrica</field>
-			<field name="internal_type1">other</field>
+			<field name="internal_type">other</field>
 		</record>
 	</data>
 </openerp>
