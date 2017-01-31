@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+    <!-- <data noupdate="True"> -->
+        <record id="product_product_electric_service_consumption" model="product.product">
+            <field name="name">Power Consumption</field>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="False"/>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+        </record>
+        <record id="product_product_electric_service_flat_fee" model="product.product">
+            <field name="name">Flat Fee</field>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="False"/>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+        </record>
+    </data>
+</openerp>

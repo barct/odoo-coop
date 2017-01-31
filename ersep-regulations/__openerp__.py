@@ -19,15 +19,20 @@
 #
 ##############################################################################
 {
-    'name': 'Cooperative Members',
+    'name': 'ERSeP Regulations',
     'version': '9.0.0.0.1',
     'category': 'Tools',
     'sequence': 1,
     'summary': '',
     'description': """
-Cooperative Members
-===================
-TODO
+
+ERSeP Regulations 
+=================
+
+This module is a regionalization of Córdoba province for odoo-coop
+Based on the experience of the "Cooperativa Anisacate" cooperative.
+Uses the Argentine tax & legal regulations and particularly those of the province of "Córdoba"
+through the regulator ERSeP.
 
     """,
     'author':  'Fernando Hidalgo',
@@ -36,18 +41,19 @@ TODO
     'images': [
     ],
     'depends': [
+        'electric_utility',
         'base',
-        'partner_contact_gender',
-        'partner_contact_birthdate'
+        'l10n_ar_chart',
     ],
+    'external_dependencies': {
+ #       'python': ['dbfread', 'hashlib'],
+    },
     'data': [
-        'member_view.xml',
- #       'res_config_view.xml',
-        'security/ir.model.access.csv',
+        'data/account_chart.xml',
+        'data/account_tax.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

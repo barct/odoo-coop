@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="True">    
+        <record model="account.tax.group" id="tax_group_street_lighting">
+            <field name="name">Street lighting</field>
+            <field name="tax">other</field>
+            <field name="type">perception</field>
+            <field name="application">municipal_taxes</field>
+        </record>
+    </data>
+</openerp>
