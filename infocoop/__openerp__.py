@@ -37,9 +37,9 @@ Which is a development in visual fox pro with dbf database
     'images': [
     ],
     'depends': [
+        'cooperativa_anisacate_customization',
         'base',
         'coop_members',
-        'l10n_ar_afipws_fe',
         'electric_utility',
     ],
     'external_dependencies': {

@@ -15,6 +15,10 @@ class Sector(models.Model):
 	_sql_constraints = [('sector_unique_keys', 'unique(code)', 'Code must be unique!'),]
 
 
+class City(models.Model):
+	name = fields.Char("City")
+
+
 class Connection(models.Model):
 	_name = "electric_utility.connection"
 	
@@ -28,7 +32,8 @@ class Connection(models.Model):
 
 	service_address_street = fields.Char("Street")
 	service_address_neighborhood = fields.Char("Neighborhood")
-	service_address_city = fields.Char("City")
+	service_address_city = fields.Many2one("electric_utility.city", "City")
+	service_address_reference = fields.Text("Reference")
 	service_address_lat = fields.Float("Latitude", digits=(3, 8))
 	service_address_lng = fields.Float("Longitude", digits=(3, 8))
 	cadastral_nomenclature = fields.Char("Cadastral Nomenclature")

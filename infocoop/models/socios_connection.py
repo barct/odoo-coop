@@ -38,7 +38,8 @@ class SociosConnection(models.Model, Suscriber):
 			city = city["concepto"].title()
 		else:
 			city = None
-		
+
+
 		#split address in street and neighborhood
 		if row.dirser:
 			address_split = row.dirser.split("-")
@@ -75,7 +76,7 @@ class SociosConnection(models.Model, Suscriber):
 				"measurement_sequence": sequence,
 				"service_address_neighborhood": neighborhood,
 				"service_address_street": street,
-				"service_address_city": city,
+				"service_address_reference": city,
 				}
 
 
@@ -85,6 +86,12 @@ class SociosConnection(models.Model, Suscriber):
 			tipo_med = "D"
 		else:
 			tipo_med = "A"
+
+		if red_usu:
+			if red_usu.zona == "0001": data["service_address_city"]=self.env.ref("cooperativa_anisacate_customization.anisacate_city_la_bolsa").id
+			elif red_usu.zona in ["0002","0005"]: data["service_address_city"]=self.env.ref("cooperativa_anisacate_customization.anisacate_city_anisacate").id
+			elif red_usu.zona == "0003": data["service_address_city"]=self.env.ref("cooperativa_anisacate_customization.anisacate_city_dique_chico").id
+			elif red_usu.zona in ["0004","0007"]: data["service_address_city"]=self.env.ref("cooperativa_anisacate_customization.anisacate_city_valle").id
 
 		if red_usu:
 			data["meter_serial_number"]=red_usu.nromedidor
