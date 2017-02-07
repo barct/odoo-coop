@@ -5,14 +5,18 @@
         <record id="product_product_electric_service_consumption" model="product.product">
             <field name="name">Power Consumption</field>
             <field name="type">service</field>
-            <field name="sale_ok" eval="False"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="property_account_income_id" ref="account_electric_service_dist" />
         </record>
         <record id="product_product_electric_service_flat_fee" model="product.product">
             <field name="name">Flat Fee</field>
             <field name="type">service</field>
-            <field name="sale_ok" eval="False"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
             <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="property_account_income_id" ref="account_electric_service_dist" />
         </record>
     </data>
 </openerp>

@@ -13,18 +13,26 @@
             <field name="description">Tasa de Reg.Dec.2298/00</field>
             <field name="account_id" ref="ri_ersep_ersep"/>
             <field name="refund_account_id" ref="ri_ersep_ersep"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
             <field name="amount_type">percent</field>
             <field name="amount">0.4</field>
+        </record>
+        <record model="account.tax" id="ersep_tax_inf_electrica">
+            <field name="name">Fondo Inf. Eléctrica ley 9165</field>
+            <field name="description">Fondo Inf. Eléctrica ley 9165</field>
+            <field name="account_id" ref="ri_ersep_ersep"/>
+            <field name="refund_account_id" ref="ri_ersep_ersep"/>
+            <field name="tax_group_id" ref="tax_group_provincial_rates"/>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1.5</field>
         </record>
         <record model="account.tax" id="ersep_tax_fuego">
             <field name="name">Fondo Lucha Contra el Fuego</field>
             <field name="description">Fondo Lucha Contra el Fuego</field>
             <field name="account_id" ref="ri_ersep_fuego"/>
             <field name="refund_account_id" ref="ri_ersep_fuego"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
         </record>
@@ -33,7 +41,6 @@
             <field name="description">A.T. Arroyo Cabral</field>
             <field name="account_id" ref="ri_ersep_arroyo_cabral"/>
             <field name="refund_account_id" ref="ri_ersep_arroyo_cabral"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
         </record>
@@ -42,7 +49,6 @@
             <field name="description">P.D. Norte y Noroeste Prov.</field>
             <field name="account_id" ref="ri_ersep_ctoidnnp"/>
             <field name="refund_account_id" ref="ri_ersep_ctoidnnp"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
         </record>
@@ -51,7 +57,6 @@
             <field name="description">COIE</field>
             <field name="account_id" ref="ri_ersep_coie"/>
             <field name="refund_account_id" ref="ri_ersep_coie"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
         </record>
@@ -60,7 +65,6 @@
             <field name="description">T. Seg. Eléctrica</field>
             <field name="account_id" ref="ri_ersep_seguridad_electrica"/>
             <field name="refund_account_id" ref="ri_ersep_seguridad_electrica"/>
-            <field name="tax">electric_service_perception</field>
             <field name="tax_group_id" ref="tax_group_provincial_rates"/>
             <field name="type_tax_use">sale</field>
         </record>

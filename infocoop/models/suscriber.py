@@ -35,7 +35,7 @@ class Suscriber():
 		
 		total = self.env[self.master_id._name].search_count(self.filter())
 		count = 0
-		ii_ids = self.env[self.master_id._name].search(self.filter())
+		ii_ids = self.env[self.master_id._name].search(self.filter(), limit=50)
 		for row in ii_ids:
 			self.sync_row(row)
 			stdout.write("\r %s: %i de %i" % (self._name,count,total))
@@ -93,7 +93,7 @@ class Suscriber():
 		'''When table mirror has a new record do this: Create a new record  master-slave'''
 		new = self.env[self.slave_id._name].create((self.prepare_row_fields(row)))
 		obj = self.create({"slave_id":new.id, "master_id": row.id, "hashcode": row.hashcode})
-		self.finally_row_fields(row)
+		obj.finally_row_fields(row)
 		return obj
 
 	def update_from_infocoop(self, row):

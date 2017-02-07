@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="account.account" id="account_electric_service_funeral_insurance">
+			<field name="code">3.2.00.00.040</field>
+			<field name="user_type_id" ref="account.data_account_type_equity"/>
+			<field name="name">Solidarity fund for funerals</field>
+			<field name="internal_type">other</field>
+		</record>
+	</data>
+</openerp>

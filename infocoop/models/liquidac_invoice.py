@@ -78,11 +78,141 @@ class LiquidacInvoice(models.Model, Suscriber):
 		#"period_id": period_id,
 		"document_type_id": document_type_id.id,
 		#"journal_document_type_id": journal_document_class.id,
-		"document_number": str(row.numero),
+		"document_number": row.num_fact[8:],
+		"contrat_id": contrat.id,
 		
 		"afip_responsability_type_id": partner_id.afip_responsability_type_id.id,
 
 		}
+
+	def finally_row_fields(self, row):
+		invoice = self.slave_id
+		self.env["account.invoice.line"].search([("invoice_id","=",invoice.id),]).unlink()
+		self.env["account.invoice.tax"].search([("invoice_id","=",invoice.id),]).unlink()
+
+
+
+		aux_ids = self.env["infocoop_auxiliar"].search(
+			[("medidor","=",row["medidor"]),("orden","=",row["orden"]),("periodo","=",row["periodo"])]
+			)
+
+		
+		discount = 0
+		comment = ""
+		tax_list = list()
+		for aux in aux_ids:
+			tax = None
+			if aux.item in ("14","53","54"):
+				discount += aux.importe*-1
+				comment+="Descuento: " + aux.concepto + " $" + str(aux.importe*-1) + "\n\r"
+			elif aux.item in  ["5","15"]: #sepelio
+				product = self.env.ref('funeral_insurance.product_product_funeral_insurance')
+				data = dict()
+				data["invoice_id"] = invoice.id
+				data["product_id"] =  product.id
+				data["price_unit"] =  aux.importe
+				data["name"] = aux.concepto
+				data["account_id"] = product.product_tmpl_id.property_account_income_id.id
+				data["quantity"] = 1
+				line = self.env["account.invoice.line"].create(data)
+
+				line.invoice_line_tax_ids=[(4, self.env.ref('l10n_ar_chart.ri_tax_vat_no_corresponde_ventas').id)]
+
+				
+
+			elif aux.item == "50": # COIE
+				tax = self.env.ref("ersep_regulations.ersep_tax_coie")
+			elif aux.item == "49": # ctoidnnp
+				tax = self.env.ref("ersep_regulations.ersep_tax_ctoidnnp")
+			elif aux.item == "51": # Tasa Seguridad eléctrica
+				tax = self.env.ref("ersep_regulations.ersep_tax_seguridad_electrica")
+			elif aux.item == "16": # Arroyo Cabral
+				tax = self.env.ref("ersep_regulations.ersep_tax_arroyo_cabral")
+			elif aux.item == "7": # Fuego
+				tax = self.env.ref("ersep_regulations.ersep_tax_fuego")
+			elif aux.item == "8": # ersep_tax_inf_electrica
+				tax = self.env.ref("ersep_regulations.ersep_tax_inf_electrica")
+				
+			if tax:
+				data = dict()
+				data["invoice_id"] = invoice.id
+				data["tax_id"] =  tax.id
+				data["amount"] =  aux.importe
+				data["name"] = aux.concepto
+				data["account_id"] = tax.account_id.id
+				#create an append tax line
+				tax_line = self.env["account.invoice.tax"].create(data)
+				tax_list.append(tax_line.tax_id.id)
+
+		#save discount coment 
+		if comment:
+			invoice.comment=comment
+
+
+		#vat
+		if row["iva2"]>0:
+			tax = self.env.ref('l10n_ar_chart.ri_tax_vat_27_ventas')
+			vat=row["iva2"]
+		else:
+			tax = self.env.ref('l10n_ar_chart.ri_tax_vat_21_ventas')
+			vat=row["iva1"]
+		data = dict()
+		data["invoice_id"] = invoice.id
+		data["tax_id"] =  tax.id
+		data["amount"] =  vat
+		data["name"] = tax.name
+		data["account_id"] = tax.account_id.id
+		tax_line = self.env["account.invoice.tax"].create(data)
+		tax_list.append(tax_line.tax_id.id)
+
+		
+		#product_product_electric_service_flat_fee
+		product = self.env.ref('electric_utility.product_product_electric_service_flat_fee')
+		data = dict()
+		data["invoice_id"] = invoice.id
+		data["product_id"] =  product.id
+		data["price_unit"] =  row["cargo_fijo"]
+		data["name"] = product.name
+		data["account_id"] = product.product_tmpl_id.property_account_income_id.id
+		data["quantity"] = 1
+		line_flat = self.env["account.invoice.line"].create(data)
+
+
+		#product_product_electric_service_consumption
+		product = self.env.ref('electric_utility.product_product_electric_service_consumption')
+		data = dict()
+		data["invoice_id"] = invoice.id
+		data["product_id"] =  product.id
+		data["price_unit"] =  row["imp_ee"]
+		data["discount"] = discount
+		data["name"] = product.name
+		data["account_id"] = product.product_tmpl_id.property_account_income_id.id
+		data["quantity"] = 1
+		line_cons = self.env["account.invoice.line"].create(data)
+
+
+		for tax in invoice.contrat_id.connection_id.service_address_city.tax_ids:
+			data = dict()
+			data["invoice_id"] = invoice.id
+			data["tax_id"] =  tax.id
+			data["amount"] =  row["rec_muni"]
+			data["name"] = tax.name
+			data["account_id"] = tax.account_id.id
+			tax_line = self.env["account.invoice.tax"].create(data)
+			tax_list.append(tax_line.tax_id.id)
+
+		line_flat.invoice_line_tax_ids=[(6,0, tax_list)]
+		line_cons.invoice_line_tax_ids=[(6,0, tax_list)]
+
+
+
+
+
+
+
+
+
+
 
 
 

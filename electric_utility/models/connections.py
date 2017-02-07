@@ -16,7 +16,10 @@ class Sector(models.Model):
 
 
 class City(models.Model):
+	_name = "electric_utility.city"
 	name = fields.Char("City")
+
+	tax_ids = fields.Many2many("account.tax", string="Municipal Taxes")
 
 
 class Connection(models.Model):

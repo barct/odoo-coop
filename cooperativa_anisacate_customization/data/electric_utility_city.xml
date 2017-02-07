@@ -3,15 +3,19 @@
     <data>    
         <record model="electric_utility.city" id="anisacate_city_anisacate">
             <field name="name">Anisacate</field>
+            <field name="tax_ids" eval="[(6, 0, [ref('anisacate_tax_anisacate')])]"/>
         </record>
          <record model="electric_utility.city" id="anisacate_city_dique_chico">
             <field name="name">Dique Chico</field>
+            <field name="tax_ids" eval="[(6, 0, [ref('anisacate_tax_dique_chico')])]"/>
         </record>
          <record model="electric_utility.city" id="anisacate_city_la_bolsa">
             <field name="name">La Bolsa</field>
+            <field name="tax_ids" eval="[(6, 0, [ref('anisacate_tax_la_bolsa')])]"/>
         </record>
          <record model="electric_utility.city" id="anisacate_city_valle">
             <field name="name">Valle de Anisacate</field>
+            <field name="tax_ids" eval="[(6, 0, [ref('anisacate_tax_valle')])]"/>
         </record>
     </data>
 </openerp>

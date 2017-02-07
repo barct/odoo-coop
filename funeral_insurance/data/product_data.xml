@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="product_product_funeral_insurance" model="product.product">
+            <field name="name">Funeral insurance</field>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="property_account_income_id" ref="account_electric_service_funeral_insurance" />
+        </record>
+    </data>
+</openerp>

@@ -19,20 +19,17 @@
 #
 ##############################################################################
 {
-    'name': 'Electric Public Utility',
+    'name': 'Funeral Insurance',
     'version': '9.0.0.0.1',
     'category': 'Tools',
     'sequence': 1,
     'summary': '',
     'description': """
 
-Electric Public Utility
-=======================
+Funeral Insurance
+=================
 
-This module implements functionality for a electric public utility.
-Based on the experience of the "Cooperativa Anisacate" cooperative.
-Uses the Argentine tax & legal regulations and particularly those of the province of "Córdoba"
-through the regulator ERSeP.
+Models Charts accounts and product for commercialization of funeral insurance
 
     """,
     'author':  'Fernando Hidalgo',
@@ -42,24 +39,14 @@ through the regulator ERSeP.
     ],
     'depends': [
         'base',
- #       'coop_members',
-        'l10n_ar_afipws_fe',
-        'l10n_ar_account',
-        'date_range',
+        'l10n_ar_chart',
     ],
     'external_dependencies': {
  #       'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        'data/account.document.type.csv',
-        'data/account_tax_group.xml',
-        'data/product_data.xml',
         'data/accounts_chart.xml',
-        'views/connection_view.xml',
-        'views/contrat_view.xml',
-        'views/res_partner_view.xml',
- #       'res_config_view.xml',
-        'security/ir.model.access.csv',
+        'data/product_data.xml',
     ],
     'demo': [
     ],

@@ -19,20 +19,16 @@
 #
 ##############################################################################
 {
-    'name': 'Electric Public Utility',
+    'name': 'Electric Utility Like Settlement Aeroo Report',
     'version': '9.0.0.0.1',
-    'category': 'Tools',
-    'sequence': 1,
+    'category': 'Localization/Argentina',
     'summary': '',
     'description': """
 
-Electric Public Utility
-=======================
+Electric Utility Like Settlement Aeroo Report
+=============================================
 
-This module implements functionality for a electric public utility.
-Based on the experience of the "Cooperativa Anisacate" cooperative.
-Uses the Argentine tax & legal regulations and particularly those of the province of "Córdoba"
-through the regulator ERSeP.
+TODO
 
     """,
     'author':  'Fernando Hidalgo',
@@ -41,25 +37,15 @@ through the regulator ERSeP.
     'images': [
     ],
     'depends': [
-        'base',
- #       'coop_members',
-        'l10n_ar_afipws_fe',
+        'report_extended_account',
         'l10n_ar_account',
-        'date_range',
+        'l10n_ar_aeroo_base',
     ],
     'external_dependencies': {
  #       'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        'data/account.document.type.csv',
-        'data/account_tax_group.xml',
-        'data/product_data.xml',
-        'data/accounts_chart.xml',
-        'views/connection_view.xml',
-        'views/contrat_view.xml',
-        'views/res_partner_view.xml',
- #       'res_config_view.xml',
-        'security/ir.model.access.csv',
+        'settlement_report.xml',
     ],
     'demo': [
     ],

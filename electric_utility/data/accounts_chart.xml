@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="account.account" id="account_electric_service_debt">
+			<field name="code">1.1.02.00.011</field>
+			<field name="user_type_id" ref="account.data_account_type_receivable"/>
+			<field name="name">Deudores por Dist. de Servicio Eléctrico</field>
+			<field name="internal_type">receivable</field>
+			<field name="reconcile">True</field>
+		</record>    
+		<record model="account.account" id="account_electric_service_dist">
+			<field name="code">4.1.01.00.021</field>
+			<field name="user_type_id" ref="account.data_account_type_revenue"/>
+			<field name="name">Dist. de Servicio Eléctrico</field>
+			<field name="internal_type">other</field>
+		</record>
+	</data>
+</openerp>
