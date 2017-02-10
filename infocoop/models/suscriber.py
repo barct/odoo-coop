@@ -35,7 +35,7 @@ class Suscriber():
 		
 		total = self.env[self.master_id._name].search_count(self.filter())
 		count = 0
-		ii_ids = self.env[self.master_id._name].search(self.filter(), limit=50)
+		ii_ids = self.env[self.master_id._name].search(self.filter())
 		for row in ii_ids:
 			self.sync_row(row)
 			stdout.write("\r %s: %i de %i" % (self._name,count,total))

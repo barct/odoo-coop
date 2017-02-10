@@ -9,9 +9,14 @@ import hashlib
 import utils
 from sys import stdout
 import logging
+import datetime
 _logger = logging.getLogger(__name__)
 
 DEBUG = True
+
+
+ACCOUNT_INITIAL_DATE_SYNC = datetime.datetime(year=2017, month=1, day=1)
+
 
 class mirror_table():
 	"""
@@ -228,7 +233,12 @@ class infocoop_liquidac(models.Model, mirror_table):
 
 	def dbf_rows(self):
 		for row in super(infocoop_liquidac, self).dbf_rows():
-			if row["PERIODO"] in ["09/2016","11/2016"] and row["SERVICIOS"]=="/E":
+			try:
+				year =  int(row["PERIODO"][-4:])
+				month =  int(row["PERIODO"][:2])
+			except:
+				continue
+			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
 				yield row
 
 class infocoop_auxiliar(models.Model, mirror_table):
@@ -253,7 +263,12 @@ class infocoop_auxiliar(models.Model, mirror_table):
 
 	def dbf_rows(self):
 		for row in super(infocoop_auxiliar, self).dbf_rows():
-			if row["PERIODO"] in ["09/2016","11/2016"]:
+			try:
+				year =  int(row["PERIODO"][-4:])
+				month =  int(row["PERIODO"][:2])
+			except:
+				continue
+			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
 				yield row
 
 class infocoop_ctacte(models.Model, mirror_table):
@@ -276,7 +291,12 @@ class infocoop_ctacte(models.Model, mirror_table):
 
 	def dbf_rows(self):
 		for row in super(infocoop_ctacte, self).dbf_rows():
-			if row["PERIODO"] in ["09/2016","11/2016"] and row["SERVICIOS"]=="/E":
+			try:
+				year =  int(row["PERIODO"][-4:])
+				month =  int(row["PERIODO"][:2])
+			except:
+				continue
+			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
 				yield row
 
 
@@ -300,8 +320,14 @@ class infocoop_tab_fact(models.Model, mirror_table):
 
 	def dbf_rows(self):
 		for row in super(infocoop_tab_fact, self).dbf_rows():
-			if row["PERIODO"] in ["09/2016","10/2016", "11/2016","12/2016"]:
+			try:
+				year =  int(row["PERIODO"][-4:])
+				month =  int(row["PERIODO"][:2])
+			except:
+				continue
+			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
 				yield row
+
 
 class infocoop_socios(models.Model, mirror_table):
 	dbf_tablename = "socios"
@@ -461,6 +487,16 @@ class infocoop_estados(models.Model, mirror_table):
 	varios6 = fields.Float(string='varios6')
 	tomo = fields.Char(string='tomo',length=3)
 	fecha = fields.Char(string='fecha',length=20)
+
+	def dbf_rows(self):
+		for row in super(infocoop_tab_fact, self).dbf_rows():
+			try:
+				year =  row["anio"]
+				month =  row["mes"]
+			except:
+				continue
+			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+				yield row
 
 
 class infocoop_acciones(models.Model, mirror_table):

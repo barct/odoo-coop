@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-	<data>
+	<data noupdate="False">
 		<record model="account.account" id="account_electric_service_debt">
 			<field name="code">1.1.02.00.011</field>
 			<field name="user_type_id" ref="account.data_account_type_receivable"/>
-			<field name="name">Deudores por Dist. de Servicio Eléctrico</field>
+			<field name="name">Deudores por Servicio Eléctrico</field>
 			<field name="internal_type">receivable</field>
 			<field name="reconcile">True</field>
 		</record>    
-		<record model="account.account" id="account_electric_service_dist">
+		<record model="account.account" id="account_electric_service_flat_fee">
 			<field name="code">4.1.01.00.021</field>
 			<field name="user_type_id" ref="account.data_account_type_revenue"/>
+			<field name="name">Cargo Fijo Servicio Eléctrico</field>
+			<field name="internal_type">other</field>
+		</record>
+		<record model="account.account" id="account_electric_service_dist">
+			<field name="code">4.1.01.00.022</field>
+			<field name="user_type_id" ref="account.data_account_type_revenue"/>
 			<field name="name">Dist. de Servicio Eléctrico</field>
+			<field name="internal_type">other</field>
+		</record>
+		<record model="account.account" id="account_electric_service_power_factor_penalty">
+			<field name="code">4.1.01.00.023</field>
+			<field name="user_type_id" ref="account.data_account_type_revenue"/>
+			<field name="name">Multas por Factor de Potencia</field>
 			<field name="internal_type">other</field>
 		</record>
 	</data>

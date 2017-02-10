@@ -53,8 +53,8 @@ through the regulator ERSeP.
     'data': [
         'data/account.document.type.csv',
         'data/account_tax_group.xml',
-        'data/product_data.xml',
         'data/accounts_chart.xml',
+        'data/product_data.xml',
         'views/connection_view.xml',
         'views/contrat_view.xml',
         'views/res_partner_view.xml',
