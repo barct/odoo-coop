@@ -25,6 +25,27 @@
 			<field name="target">current</field>
 		</record>
 
+		<record id="suscribe_tables_sync_selected" model="ir.actions.server">
+			<field name="name">Sync Selected</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_infocoop_suscribe_tables"/>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="state">code</field>
+			<field name="code">
+				self.sync_selected(cr, uid, context.get('active_ids'), context=context)
+			</field>
+		</record>
+
+		<record model="ir.values" id="suscribe_tables_menu_top">
+			<field name="name">Sync Selected</field>
+			<field name="model">infocoop.suscribe_tables</field>
+			<field name="key" >action</field>
+			<field name="key2">client_action_multi</field>
+			<field name="value" eval="'ir.actions.server,%d'%suscribe_tables_sync_selected" />
+			<field name="object" eval="True" />
+		</record>
+
 
 		<menuitem id="infocoop.suscribe_tables_menu_config" parent="infocoop.menu_config" name="Suscribe Tables" action="infocoop.suscribe_tables_action"/>
 	</data>

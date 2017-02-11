@@ -12,11 +12,13 @@
 					<field name="file_modified" />
 					<field name="out_of_date" />
 					<button string="sync now!" type="object"
-					    name="sync_selected" class="oe_highlight"/>
+						name="sync_selected" class="oe_highlight"/>
 					<!-- <button name="sync_tablas" string="Sync Tablas table for Infocoop" type="object" /> -->
 				</tree>
 			</field>
 		</record>
+
+	
 
 		<record id="infocoop.mirror_tables_action" model="ir.actions.act_window">
 			<field name="name">Infocoop Mirror Tables Config</field>
@@ -24,6 +26,30 @@
 			<field name="view_mode">tree</field>
 			<field name="target">current</field>
 		</record>
+
+
+		<record id="mirror_tables_sync_selected" model="ir.actions.server">
+			<field name="name">Sync Selected</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_infocoop_mirror_tables"/>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="state">code</field>
+			<field name="code">
+				self.sync_selected(cr, uid, context.get('active_ids'), context=context)
+			</field>
+		</record>
+
+
+		<record model="ir.values" id="mirror_tables_menu_top">
+			<field name="name">Sync Selected</field>
+			<field name="model">infocoop.mirror_tables</field>
+			<field name="key" >action</field>
+			<field name="key2">client_action_multi</field>
+			<field name="value" eval="'ir.actions.server,%d'%mirror_tables_sync_selected" />
+			<field name="object" eval="True" />
+		</record>
+
 
 
 		<menuitem id="infocoop.mirror_tables_menu_config" parent="infocoop.menu_config" name="Mirror Tables Sync" action="infocoop.mirror_tables_action"/>

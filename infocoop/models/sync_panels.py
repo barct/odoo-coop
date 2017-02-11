@@ -30,10 +30,12 @@ class infocoop_mirror_tables(models.Model):
 		count = self.env[self.name].search_count([])
 		self.records = count
 
-	@api.one
+	@api.multi
 	def sync_selected(self):
-		self.env[self.name].sync()
-		self.last_sync = datetime.datetime.now()
+		
+		for mt in self:
+			self.env[mt.name].sync()
+			mt.last_sync = datetime.datetime.now()
 
 	@api.one
 	def get_out_of_date(self):
@@ -42,12 +44,12 @@ class infocoop_mirror_tables(models.Model):
 	
 
 
-
-
 class infocoop_suscribe_tables(models.Model):
 	_name = 'infocoop.suscribe_tables'
+	_order = 'sequence'
 
 	name = fields.Char("Name")
+	sequence = fields.Integer("Sequence")
 
 	last_total_sync = fields.Datetime("Last Total Sync")
 	records = fields.Integer("Records", compute='get_records')
@@ -74,10 +76,11 @@ class infocoop_suscribe_tables(models.Model):
 
 		self.outs_of_date = count
 
-	@api.one
+	@api.multi
 	def sync_selected(self):
-		self.env[self.name].sync_to_odoo()
-		self.last_total_sync = datetime.datetime.now()
+		for st in self:
+			self.env[st.name].sync_to_odoo()
+			st.last_total_sync = datetime.datetime.now()
 
 	#@api.one
 	#def get_out_of_date(self):

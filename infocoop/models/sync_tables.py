@@ -15,10 +15,10 @@ _logger = logging.getLogger(__name__)
 DEBUG = True
 
 
-ACCOUNT_INITIAL_DATE_SYNC = datetime.datetime(year=2017, month=1, day=1)
+ACCOUNT_INITIAL_DATE_SYNC = datetime.date(year=2017, month=1, day=1)
 
 
-class mirror_table():
+class mirror_table_base():
 	"""
 	Class mirror table
 		is a base class for mirroring dbf of Infcooop system... and other stuff 
@@ -67,7 +67,7 @@ class mirror_table():
 					stdout.write("\r %s: %i de %i" % (self.dbf_tablename,count,total))
 					stdout.flush()
 					count += 1
-	
+
 	def sync(self):
 		"""
 		here's the magic
@@ -121,7 +121,7 @@ class mirror_table():
 		return
 			
 
-class infocoop_ingresos(models.Model, mirror_table):
+class infocoop_ingresos(models.Model, mirror_table_base):
 	'''
 	This model is a mirror of a table ingresos in InfoCoop system
 	ingresos represent the members in a cooperative
@@ -173,7 +173,7 @@ class infocoop_ingresos(models.Model, mirror_table):
 				yield row
 
 
-class infocoop_tablas(models.Model, mirror_table):
+class infocoop_tablas(models.Model, mirror_table_base):
 
 	dbf_tablename = "tablas"
 	dbf_pk = ("tema","subtema","codigo","subcodigo")
@@ -201,7 +201,7 @@ class infocoop_tablas(models.Model, mirror_table):
 	_sql_constraints = [('unique_keys', 'unique(tema,subtema,codigo,subcodigo)', 'must be unique!'),]
 
 
-class infocoop_liquidac(models.Model, mirror_table):
+class infocoop_liquidac(models.Model, mirror_table_base):
 
 	dbf_tablename = "liquidac"
 	dbf_pk = ("medidor","orden","periodo")
@@ -236,12 +236,13 @@ class infocoop_liquidac(models.Model, mirror_table):
 			try:
 				year =  int(row["PERIODO"][-4:])
 				month =  int(row["PERIODO"][:2])
+				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+			if  date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
-class infocoop_auxiliar(models.Model, mirror_table):
+class infocoop_auxiliar(models.Model, mirror_table_base):
 
 	dbf_tablename = "auxiliar"
 	dbf_pk = ("medidor","orden","periodo","item")
@@ -266,12 +267,13 @@ class infocoop_auxiliar(models.Model, mirror_table):
 			try:
 				year =  int(row["PERIODO"][-4:])
 				month =  int(row["PERIODO"][:2])
+				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+			if  date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
-class infocoop_ctacte(models.Model, mirror_table):
+class infocoop_ctacte(models.Model, mirror_table_base):
 
 	dbf_tablename = "ctacte"
 	dbf_pk = ("medidor","orden","periodo")
@@ -294,13 +296,14 @@ class infocoop_ctacte(models.Model, mirror_table):
 			try:
 				year =  int(row["PERIODO"][-4:])
 				month =  int(row["PERIODO"][:2])
+				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+			if date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
 
-class infocoop_tab_fact(models.Model, mirror_table):
+class infocoop_tab_fact(models.Model, mirror_table_base):
 
 	dbf_tablename = "tab_fact"
 	dbf_pk = ("periodo",)
@@ -323,13 +326,15 @@ class infocoop_tab_fact(models.Model, mirror_table):
 			try:
 				year =  int(row["PERIODO"][-4:])
 				month =  int(row["PERIODO"][:2])
+				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+			print year
+			if  date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
 
-class infocoop_socios(models.Model, mirror_table):
+class infocoop_socios(models.Model, mirror_table_base):
 	dbf_tablename = "socios"
 	dbf_pk = ("medido","orden")
 
@@ -383,7 +388,7 @@ class infocoop_socios(models.Model, mirror_table):
 			if row["ORDEN"] in ["E","F","G","H","I","J","K","L","M"]:
 				yield row
 
-class infocoop_modi_soc(models.Model, mirror_table):
+class infocoop_modi_soc(models.Model, mirror_table_base):
 	dbf_tablename = "modi_soc"
 	dbf_pk = ("medidor","orden","campo","fecha","hora")
 
@@ -406,7 +411,7 @@ class infocoop_modi_soc(models.Model, mirror_table):
 				yield row
 
 
-class infocoop_red_usu(models.Model, mirror_table):
+class infocoop_red_usu(models.Model, mirror_table_base):
 	dbf_tablename = "red_usu"
 	dbf_pk = ("medidor","orden")
 
@@ -435,7 +440,7 @@ class infocoop_red_usu(models.Model, mirror_table):
 				yield row
 
 
-class infocoop_suscrip(models.Model, mirror_table):
+class infocoop_suscrip(models.Model, mirror_table_base):
 	dbf_tablename = "suscrip"
 	dbf_pk = ("nrosoc",)
 
@@ -459,7 +464,7 @@ class infocoop_suscrip(models.Model, mirror_table):
 	nro_cert = fields.Integer(string='nro_cert')
 
 
-class infocoop_estados(models.Model, mirror_table):
+class infocoop_estados(models.Model, mirror_table_base):
 	dbf_tablename = "estados"
 	dbf_pk = ("medidor","orden", "mes", "anio")
 
@@ -489,17 +494,19 @@ class infocoop_estados(models.Model, mirror_table):
 	fecha = fields.Char(string='fecha',length=20)
 
 	def dbf_rows(self):
-		for row in super(infocoop_tab_fact, self).dbf_rows():
+		for row in super(infocoop_estados, self).dbf_rows():
 			try:
-				year =  row["anio"]
-				month =  row["mes"]
+				year =  int(row["PERIODO"][-4:])
+				month =  int(row["PERIODO"][:2])
+				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			if year >= ACCOUNT_INITIAL_DATE_SYNC.year and month>= ACCOUNT_INITIAL_DATE_SYNC.month:
+			print year
+			if  date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
 
-class infocoop_acciones(models.Model, mirror_table):
+class infocoop_acciones(models.Model, mirror_table_base):
 
 	dbf_tablename = "acciones"
 	dbf_pk = ("nrosoc","cuota")

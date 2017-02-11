@@ -5,11 +5,9 @@
 ##############################################################################
 from openerp import models, fields, api
 from suscriber import Suscriber
-from debug import oprint
+#from debug import oprint
 import datetime
 
-
-from utils import doc_number_normalize, name_clean
 
 _vars = {} 
 def global_cache_var(env, var ,func):

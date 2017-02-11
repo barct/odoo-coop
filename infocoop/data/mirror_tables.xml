@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-	<data >
+	<data noupdate="True">
 		<record model="infocoop.mirror_tables" id="infocoop.ingresos">
 			<field name="name">infocoop_ingresos</field>
 			<field name="dbf_file">ingresos.dbf</field>

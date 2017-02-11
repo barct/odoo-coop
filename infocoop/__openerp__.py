@@ -47,13 +47,14 @@ Which is a development in visual fox pro with dbf database
         'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        'data/infocoop_mirror_tables.xml',
-        'data/infocoop_suscribe_tables.xml',
+        
         'views/config_menu.xml',
         'views/mirror_tables.xml',
         'views/suscribe_tables.xml',
         'views/res_config_view.xml',
         'security/ir.model.access.csv',
+        'data/mirror_tables.xml',
+        'data/suscribe_tables.xml',
     ],
     'demo': [
     ],

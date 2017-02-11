@@ -3,15 +3,19 @@
 	<data >
 		<record model="infocoop.suscribe_tables" id="infocoop.socios_contrat">
 			<field name="name">infocoop.socios_contrat</field>
+			<field name="sequence">30</field>
 		</record>
 		<record model="infocoop.suscribe_tables" id="infocoop.socios_connection">
 			<field name="name">infocoop.socios_connection</field>
+			<field name="sequence">20</field>
 		</record>
 		<record model="infocoop.suscribe_tables" id="infocoop.socios_member">
 			<field name="name">infocoop.socios_member</field>
+			<field name="sequence">10</field>
 		</record>
 		<record model="infocoop.suscribe_tables" id="infocoop.liquidac_invoice">
 			<field name="name">infocoop.liquidac_invoice</field>
+			<field name="sequence">40</field>
 		</record>
 	</data>
 </openerp>

@@ -63,6 +63,9 @@ class SociosConnection(models.Model, Suscriber):
 			date_end=modi_soc.fecha
 		elif service_status > 2 and modi_soc.fecha:
 			date_end=modi_soc.fecha
+		elif service_status == 4 and not modi_soc:
+			modi_soc = self.env["infocoop_modi_soc"].search([("medidor","=",row.medido),("orden","=",row.orden)],order="fecha desc, hora desc",limit=1)
+			if modi_soc: date_end=modi_soc.fecha
 		else:
 			date_end = None
 
