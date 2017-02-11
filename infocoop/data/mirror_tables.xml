@@ -50,5 +50,14 @@
 			<field name="name">infocoop_acciones</field>
 			<field name="dbf_file">acciones.dbf</field>
 		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.ventas">
+			<field name="name">infocoop_ventas</field>
+			<field name="dbf_file">ventas.dbf</field>
+		</record>
+		<record model="infocoop.mirror_tables" id="infocoop.rebibos">
+			<field name="name">infocoop_recibos</field>
+			<field name="dbf_file">recibos.dbf</field>
+		</record>
+
 	</data>
 </openerp>

@@ -24,12 +24,12 @@ def global_cache_var(env, var ,func):
 
 
 class CtaCteInvoice(models.Model, Suscriber):
-	_name = "infocoop.cta_cte_invoice"
+	_name = "infocoop.ctacte_invoice"
 	
-	master_id = fields.Many2one('infocoop_cta_cte', ondelete='cascade')
+	master_id = fields.Many2one('infocoop_ctacte', ondelete='cascade')
 	slave_id = fields.Many2one('account.invoice')
 
-	mirror_dependencies = ["infocoop_cta_cte",]
+	mirror_dependencies = ["infocoop_ctacte",]
 	
 	
 	def prepare_row_fields(self, row):

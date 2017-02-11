@@ -501,7 +501,6 @@ class infocoop_estados(models.Model, mirror_table_base):
 				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
-			print year
 			if  date >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
@@ -531,4 +530,93 @@ class infocoop_acciones(models.Model, mirror_table_base):
 	def dbf_rows(self):
 		for row in super(infocoop_acciones, self).dbf_rows():
 			if row["NROSOC"]<9000:
+				yield row
+
+class infocoop_ventas(models.Model, mirror_table_base):
+
+	dbf_tablename = "ventas"
+	dbf_pk = ("tipo_comp","tipo_fact","sucursal","numero")
+
+	_sql_constraints = [('unique_keys', 'unique(tipo_comp, tipo_fact, sucursal, numero)', 'must be unique!'),]
+
+
+	contribuye = fields.Integer(string='contribuye')
+	cliente = fields.Char(string='cliente',length=30)
+	cuit = fields.Char(string='cuit',length=13)
+	condicion = fields.Integer(string='condicion')
+	tipo_iva = fields.Integer(string='tipo_iva')
+	tipo_fact = fields.Char(string='tipo_fact',length=1)
+	tipo_comp = fields.Char(string='tipo_comp',length=4)
+	tipo_vta = fields.Integer(string='tipo_vta')
+	sucursal = fields.Integer(string='sucursal')
+	numero = fields.Integer(string='numero')
+	exento = fields.Float(string='exento')
+	no_gravado = fields.Float(string='no_gravado')
+	iva_inscr = fields.Float(string='iva_inscr')
+	iva_no_i = fields.Float(string='iva_no_i')
+	iva_3 = fields.Float(string='iva_3')
+	retencion = fields.Float(string='retencion')
+	tot_fact = fields.Float(string='tot_fact')
+	fecha = fields.Date(string='fecha')
+	decaja = fields.Integer(string='decaja')
+
+
+	def dbf_rows(self):
+		for row in super(infocoop_ventas, self).dbf_rows():
+			if  row["fecha"] >= ACCOUNT_INITIAL_DATE_SYNC:
+				yield row
+
+
+
+class infocoop_recibos(models.Model, mirror_table_base):
+
+	dbf_tablename = "recibos"
+	dbf_pk = ("comproban","letra","sucursal","numero")
+
+	_sql_constraints = [('unique_keys', 'unique(comproban,letra, sucursal, numero)', 'must be unique!'),]
+	comproban = fields.Char(string='comproban',length=1)
+	
+	letra = fields.Char(string='letra',length=1)
+	sucursal = fields.Integer(string='sucursal')
+	numero = fields.Integer(string='numero')
+	barrio = fields.Integer(string='barrio')
+	medidor = fields.Integer(string='medidor')
+	orden = fields.Char(string='orden',length=1)
+	nombre = fields.Char(string='nombre',length=70)
+	domicilio = fields.Char(string='domicilio',length=30)
+	condiva = fields.Integer(string='condiva')
+	fecha = fields.Date(string='fecha')
+	importe = fields.Float(string='importe')
+	exento = fields.Float(string='exento')
+	iva1 = fields.Float(string='iva1')
+	iva2 = fields.Float(string='iva2')
+	motivo = fields.Text(string='motivo')
+	pagado = fields.Char(string='pagado',length=10)
+	realizo = fields.Char(string='realizo',length=10)
+	cheques = fields.Float(string='cheques')
+	observacio = fields.Char(string='observacio',length=60)
+	tipo_iva = fields.Integer(string='tipo_iva')
+	tipo_vta = fields.Integer(string='tipo_vta')
+	contado = fields.Integer(string='contado')
+	cuotas = fields.Integer(string='cuotas')
+	cuit = fields.Char(string='cuit',length=13)
+	concepto = fields.Char(string='concepto',length=3)
+	imp_intern = fields.Float(string='imp_intern')
+	imp_adic = fields.Float(string='imp_adic')
+	saldo = fields.Float(string='saldo')
+	cajero = fields.Char(string='cajero',length=3)
+	efectivo = fields.Float(string='efectivo')
+	bonos_a = fields.Float(string='bonos_a')
+	bonos_b = fields.Float(string='bonos_b')
+	codpostal = fields.Char(string='codpostal',length=8)
+	codloca = fields.Integer(string='codloca')
+	dolares = fields.Float(string='dolares')
+	retencio = fields.Float(string='retencio')
+	banco = fields.Integer(string='banco')
+	fec_pago = fields.Date(string='fec_pago')
+
+
+	def dbf_rows(self):
+		for row in super(infocoop_ventas, self).dbf_rows():
+			if  row["fecha"] >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
