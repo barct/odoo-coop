@@ -11,6 +11,7 @@
 					<field name="last_sync" />
 					<field name="file_modified" />
 					<field name="out_of_date" />
+					<field name="processing_time" />
 					<button string="sync now!" type="object"
 						name="sync_selected" class="oe_highlight"/>
 					<!-- <button name="sync_tablas" string="Sync Tablas table for Infocoop" type="object" /> -->

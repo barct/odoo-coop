@@ -57,7 +57,7 @@ class SociosConnection(models.Model, Suscriber):
 		else:
 			service_status = 4
 
-
+		date_end = None
 		modi_soc = self.env["infocoop_modi_soc"].search([("medidor","=",row.medido),("orden","=",row.orden),("campo","=","ACTIVO")],order="fecha desc, hora desc",limit=1)
 		if modi_soc.actual=="N" and service_status not in (1,2):
 			date_end=modi_soc.fecha
@@ -66,8 +66,7 @@ class SociosConnection(models.Model, Suscriber):
 		elif service_status == 4 and not modi_soc:
 			modi_soc = self.env["infocoop_modi_soc"].search([("medidor","=",row.medido),("orden","=",row.orden)],order="fecha desc, hora desc",limit=1)
 			if modi_soc: date_end=modi_soc.fecha
-		else:
-			date_end = None
+			
 
 		connection = self.get_or_create_connection(row)
 		client = self.get_or_create_client(row)
@@ -136,7 +135,7 @@ class SociosConnection(models.Model, Suscriber):
 				}
 		return data
 
-	def get_slave_form_row(self, row):
+	def get_slave_from_row(self, row):
 		return self.env[self.slave_id._name].search([("contrat_number","=",str(row.medido)+str(row.orden)),], limit=1)	
 
 	def get_or_create_connection(self, row):

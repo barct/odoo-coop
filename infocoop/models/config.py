@@ -6,15 +6,13 @@ _logger = logging.getLogger(__name__)
 from debug import oprint
 
 
-
 class infocoop_configuration(models.TransientModel):
     _inherit = 'res.config.settings'
     _name = "infocoop_configuration"
 
     dbf_path = fields.Char(string="Path to dbfs")
-    liquidac_invoice_journal_id = fields.Many2one("account.journal", string="Liquidac to Invoice Journal")
-
-
+    liquidac_invoice_journal_id = fields.Many2one(
+        "account.journal", string="Liquidac to Invoice Journal")
 
     @api.multi
     def get_default_dbf_path(self, fields):
@@ -24,17 +22,17 @@ class infocoop_configuration(models.TransientModel):
 
     @api.multi
     def get_dbf_path(self):
-        return self.env["infocoop_configuration"].search([], limit=1, order="id desc").dbf_path 
+        return self.env["infocoop_configuration"].search([], limit=1, order="id desc").dbf_path
 
     _cache_liquidac_invoice_journal_id = None
+
     @api.multi
     def get_liquidac_invoice_journal_id(self):
-        if  self._cache_liquidac_invoice_journal_id is None:
-            #print "leo"
-            self._cache_liquidac_invoice_journal_id = self.env["infocoop_configuration"].search([], limit=1, order="id desc").liquidac_invoice_journal_id
+        if self._cache_liquidac_invoice_journal_id is None:
+            # print "leo"
+            self._cache_liquidac_invoice_journal_id = self.env["infocoop_configuration"].search(
+                [], limit=1, order="id desc").liquidac_invoice_journal_id
         return self._cache_liquidac_invoice_journal_id
-
-    
 
     @api.multi
     def sync_ingresos(self, *args, **kwargs):
@@ -72,12 +70,10 @@ class infocoop_configuration(models.TransientModel):
     def sync_modi_soc(self, *args, **kwargs):
         self.env['infocoop_modi_soc'].sync()
 
-
-
     @api.multi
     def sync_members(self):
         self.env["infocoop.ingresos_member"].sync_to_odoo()
-    
+
     @api.multi
     def sync_connections(self):
         self.env["infocoop.socios_connection"].sync_to_odoo()

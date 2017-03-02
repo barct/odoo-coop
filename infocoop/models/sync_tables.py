@@ -76,7 +76,7 @@ class mirror_table_base():
 		model = self._name
 		path = self.env["infocoop_configuration"].get_dbf_path()
 		dbf_tablename = path + "/" + self.dbf_tablename + '.dbf'
-		self.dbf_table = DBF(dbf_tablename)
+		self.dbf_table = DBF(dbf_tablename, ignore_missing_memofile=True)
 
 		##fields OPERADOR cause parse problems :(
 		for field in self.dbf_table.fields:
@@ -496,8 +496,8 @@ class infocoop_estados(models.Model, mirror_table_base):
 	def dbf_rows(self):
 		for row in super(infocoop_estados, self).dbf_rows():
 			try:
-				year =  int(row["PERIODO"][-4:])
-				month =  int(row["PERIODO"][:2])
+				year =  row["ANIO"]
+				month = row["MES"]
 				date = datetime.date(year=year, month=month, day=1)
 			except:
 				continue
@@ -563,7 +563,7 @@ class infocoop_ventas(models.Model, mirror_table_base):
 
 	def dbf_rows(self):
 		for row in super(infocoop_ventas, self).dbf_rows():
-			if  row["fecha"] >= ACCOUNT_INITIAL_DATE_SYNC:
+			if row["FECHA"] and row["FECHA"] >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row
 
 
@@ -579,9 +579,9 @@ class infocoop_recibos(models.Model, mirror_table_base):
 	letra = fields.Char(string='letra',length=1)
 	sucursal = fields.Integer(string='sucursal')
 	numero = fields.Integer(string='numero')
-	barrio = fields.Integer(string='barrio')
-	medidor = fields.Integer(string='medidor')
-	orden = fields.Char(string='orden',length=1)
+	barrio = fields.Integer(string='barrio', index=True)
+	medidor = fields.Integer(string='medidor', index=True)
+	orden = fields.Char(string='orden',length=1, index=True)
 	nombre = fields.Char(string='nombre',length=70)
 	domicilio = fields.Char(string='domicilio',length=30)
 	condiva = fields.Integer(string='condiva')
@@ -590,7 +590,7 @@ class infocoop_recibos(models.Model, mirror_table_base):
 	exento = fields.Float(string='exento')
 	iva1 = fields.Float(string='iva1')
 	iva2 = fields.Float(string='iva2')
-	motivo = fields.Text(string='motivo')
+	#motivo = fields.Text(string='motivo')
 	pagado = fields.Char(string='pagado',length=10)
 	realizo = fields.Char(string='realizo',length=10)
 	cheques = fields.Float(string='cheques')
@@ -617,6 +617,6 @@ class infocoop_recibos(models.Model, mirror_table_base):
 
 
 	def dbf_rows(self):
-		for row in super(infocoop_ventas, self).dbf_rows():
-			if  row["fecha"] >= ACCOUNT_INITIAL_DATE_SYNC:
+		for row in super(infocoop_recibos, self).dbf_rows():
+			if  row["FECHA"] and row["FECHA"] >= ACCOUNT_INITIAL_DATE_SYNC:
 				yield row

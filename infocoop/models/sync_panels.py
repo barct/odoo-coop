@@ -17,6 +17,7 @@ class infocoop_mirror_tables(models.Model):
 	last_sync = fields.Datetime("Last Sync")
 	records = fields.Integer("Records", compute='get_records')
 	out_of_date = fields.Boolean("Out of Date", compute='get_out_of_date')
+	processing_time = fields.Integer("Processing Time")
 
 
 	@api.one
@@ -79,8 +80,13 @@ class infocoop_suscribe_tables(models.Model):
 	@api.multi
 	def sync_selected(self):
 		for st in self:
+			start_time = datetime.datetime.now()
 			self.env[st.name].sync_to_odoo()
-			st.last_total_sync = datetime.datetime.now()
+			stop_time = datetime.datetime.now()
+			st.last_total_sync = stop_time
+			st.processing_time = (stop_time-start_time).seconds
+
+
 
 	#@api.one
 	#def get_out_of_date(self):

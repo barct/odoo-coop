@@ -141,7 +141,7 @@ class SociosMember(models.Model, Suscriber):
 
 
 
-	def get_slave_form_row(self, row):
+	def get_slave_from_row(self, row):
 		socio = self.env["infocoop_ingresos"].search([("socio","=",row.nrosoc),], limit=1).socio
 		if socio>0:
 			return self.env[self.slave_id._name].search([("membership_number","=",socio),], limit=1)

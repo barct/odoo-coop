@@ -41,7 +41,9 @@ Which is a development in visual fox pro with dbf database
         'base',
         'coop_members',
         'electric_utility',
-        'funeral_insurance'
+        'funeral_insurance',
+        'l10n_ar_chart',
+        'account_accountant',
     ],
     'external_dependencies': {
         'python': ['dbfread', 'hashlib'],

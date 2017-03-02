@@ -55,7 +55,7 @@ class Suscriber():
 					s_ids.delete_from_infocoop(row)
 			else:
 				if s_ids.slave_id is None:
-					slave = self.get_slave_form_row(row)
+					slave = self.get_slave_from_row(row)
 					if slave:
 						s_ids = self.create({"slave_id":slave.id, "master_id": row.id, "hashcode": row.hashcode})
 						s_ids.update_from_infocoop(row)
@@ -72,7 +72,7 @@ class Suscriber():
 			if row.sync_delete_mark:
 				pass
 			else:
-				slave = self.get_slave_form_row(row)
+				slave = self.get_slave_from_row(row)
 				if slave:
 					s_ids = self.create({"slave_id":slave.id, "master_id": row.id, "hashcode": row.hashcode})
 					s_ids.update_from_infocoop(row)
@@ -82,7 +82,7 @@ class Suscriber():
 		return s_ids
 
 
-	def get_slave_form_row(self, row):
+	def get_slave_from_row(self, row):
 		'''
 		This method must be used to obtain a slave record based on a mirror dbf row
 		'''

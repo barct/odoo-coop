@@ -112,5 +112,5 @@ class SociosConnection(models.Model, Suscriber):
 #
 #		return s 
 			
-	def get_slave_form_row(self, row):
+	def get_slave_from_row(self, row):
 		return self.env[self.slave_id._name].search([("number","=",row.medido),], limit=1)
