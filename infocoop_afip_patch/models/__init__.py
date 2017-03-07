@@ -4,4 +4,4 @@
 # directory
 ##############################################################################
 
-from . import models
+from . import infocoop_tab_fact

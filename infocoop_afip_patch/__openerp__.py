@@ -19,47 +19,35 @@
 #
 ##############################################################################
 {
-    'name': 'Infocoop Sync',
+    'name': 'Infoocoop Afip Patch',
     'version': '9.0.0.0.1',
     'category': 'Tools',
     'sequence': 1,
     'summary': '',
     'description': """
-Infocoop Sync
-=============
-This module is a try to syncronize data from a system for
-cooperatives called "InfoCoop".
-Which is a development in visual fox pro with dbf database
-    """,
+Infoocoop Afip Patch
+====================
+This module implements requirements for Afip urgently.
+In the future is package will be necessary
+""",
     'author': 'Fernando Hidalgo',
     'website': 'www.hidalgofernando.com.ar',
     'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
-        'cooperativa_anisacate_customization',
-        'base',
-        'coop_members',
+        'infocoop',
         'electric_utility',
-        'funeral_insurance',
         'l10n_ar_chart',
-        'account_accountant',
     ],
     'external_dependencies': {
-        'python': ['dbfread', 'hashlib'],
+        # 'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        'views/config_menu.xml',
-        'views/mirror_tables.xml',
-        'views/suscribe_tables.xml',
-        'views/res_config_view.xml',
-        'security/ir.model.access.csv',
-        'data/mirror_tables.xml',
-        'data/suscribe_tables.xml',
+        'views/infocoop_tab_fact_view.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

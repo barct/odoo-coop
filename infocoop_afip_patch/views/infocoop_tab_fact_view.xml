@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="infocoop_tab_fact" model="ir.ui.view">
+			<field name="name">infocoop_tab_fact.tree</field>
+			<field name="model">infocoop_tab_fact</field>
+			<field name="arch" type="xml">
+				<tree string="Facturaciones From Infocoop" >
+					<field name="periodo" />
+					<field name="venc_1" />
+					<field name="venc_2" />
+					<field name="reparto" />
+					<field name="observacio" />
+					<field name="prox_venc" />
+					<button string="download CESP" type="object"
+						name="download_cesp" class="oe_highlight"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="tab_fact_action" model="ir.actions.act_window">
+			<field name="name">Facturaciones from Infocoop</field>
+			<field name="res_model">infocoop_tab_fact</field>
+			<field name="view_mode">tree</field>
+			<field name="target">current</field>
+		</record>
+
+		<menuitem id="tab_fact_action_menuitem" parent="infocoop.menu_config" name="Table tab_fac" action="tab_fact_action"/>
+	</data>
+</openerp>
