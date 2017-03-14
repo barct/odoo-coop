@@ -1,11 +1,11 @@
 # -*- coding: utf-8 *-*
+import datetime 
 
 N = 'Numerico'      # 2
 A = 'Alfanumerico'  # 3
 # I = 'Importe'       # 4
 C = A               # 1 (caracter alfabetico)
 B = A               # 9 (blanco)
-
 
 def escribir(dic, formato, contraer_fechas=False):
     """Genera una cadena dado un formato y un diccionario de claves/valores"""
@@ -18,10 +18,13 @@ def escribir(dic, formato, contraer_fechas=False):
             if clave.capitalize() in dic:
                 clave = clave.capitalize()
             s = dic.get(clave, "")
+
             if isinstance(s, unicode):
                 s = s.encode("latin1")
             if s is None:
                 valor = ""
+            elif type(s) is datetime.date and longitud == 8:
+                valor = s.strftime('%Y%m%d')
             else:
                 valor = str(s)
             # reemplazo saltos de linea por tabulaci{on vertical

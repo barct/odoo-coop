@@ -46,7 +46,9 @@ class IngresosMember(models.Model, Suscriber):
                         {"number": row.acta, "date": row.fec_acta}).id
 
             localidad = self.env["infocoop_tablas"].search(
-                (["tema", "=", "T"], ["subtema", "=", "L"], ["codigo", "=", row.localidad]), limit=1)
+                (["tema", "=", "T"],
+                 ["subtema", "=", "L"],
+                 ["codigo", "=", row.localidad]), limit=1)
             if localidad:
                 city = localidad["concepto"].title()
             else:
@@ -54,7 +56,8 @@ class IngresosMember(models.Model, Suscriber):
 
             # TODO: This could be more efficient
             responsability_id = self.env["afip.responsability"].search(
-                (["name", "=", "Consumidor Final"], ["active", "=", 1]), limit=1).id
+                (["name", "=", "Consumidor Final"],
+                 ["active", "=", 1]), limit=1).id
 
             data = {
                 "name": name_clean(row.nombre),
@@ -75,6 +78,7 @@ class IngresosMember(models.Model, Suscriber):
 
     def get_slave_from_row(self, row):
         if row.socio > 0:
-            return self.env[self.slave_id._name].search([("membership_number", "=", row.socio), ], limit=1)
+            return self.env[self.slave_id._name].search(
+                [("membership_number", "=", row.socio), ], limit=1)
         else:
             return None

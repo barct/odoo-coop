@@ -12,8 +12,9 @@
 					<field name="reparto" />
 					<field name="observacio" />
 					<field name="prox_venc" />
+					<field name="cesp_data" />
 					<button string="download CESP" type="object"
-						name="download_cesp" class="oe_highlight"/>
+						name="generate_cesp" class="oe_highlight"/>
 				</tree>
 			</field>
 		</record>
