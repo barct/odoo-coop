@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+
+		<record id="tab_fact_tree_view" model="ir.ui.view">
+			<field name="name">tab_fact.tree.view</field>
+			<field name="model">infocoop_tab_fact</field>
+			<field name= "arch" type = "xml">
+				<tree string="Tab Fact Info">
+					<field name="periodo"/>
+					<field name="venc_1"/>
+					<field name="venc_2"/>
+					<field name="reparto"/>
+					<field name="observacio"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_tab_fact" model="ir.actions.act_window">
+			<field name="name">Tab Fact List</field>
+			<field name="res_model">infocoop_tab_fact</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_electric_utility_tab_fact" parent="electric_utility.menu_electric_utility_connections" name="Tab Fact" action="action_tab_fact"/>
+	</data>
+</openerp>

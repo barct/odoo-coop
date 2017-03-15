@@ -51,6 +51,7 @@ through the regulator ERSeP.
     'data': [
         'data/account_chart.xml',
         'data/account_tax.xml',
+        'data/service_category.xml',
     ],
     'demo': [
     ],

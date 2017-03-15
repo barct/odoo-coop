@@ -250,6 +250,67 @@ class infocoop_liquidac(models.Model, mirror_table_base):
             if date >= ACCOUNT_INITIAL_DATE_SYNC:
                 yield row
 
+    service_category_id = fields.Many2one("electric_utility.service_category",
+                                          string="Service Category",
+                                          compute='_compute')
+
+    ts_level = fields.Integer(string="Tarifa Social Level",
+                              compute='_compute')
+    ts_amount = fields.Float(string="Tarifa Social Amount",
+                             compute='_compute')
+    ts_kwh = fields.Float(string="Tarifa Social kWh",
+                          compute='_compute')
+
+    pe_level = fields.Integer(string="Plan Estimulo Level",
+                              compute='_compute')
+    pe_amount = fields.Float(string="Plan Estimulo Amount",
+                             compute='_compute')
+    pe_kwh = fields.Float(string="Plan Estimulo kWh",
+                          compute='_compute')
+
+    @api.depends("categorias")
+    def _compute(self):
+        c = 0
+        for r in self:
+            code = int(r.categorias.split()[0])
+            if code in (1, 21, 31, 41):
+                cat = "electric_utility.service_category_E1"
+            elif code in (2, 4, 22, 24):
+                cat = "electric_utility.service_category_E2"
+            elif code in (3, 23):
+                cat = "electric_utility.service_category_E3"
+            elif code in (5, 6, 25, 26):
+                cat = "electric_utility.service_category_E6"
+            elif code in (7, 27):
+                cat = "electric_utility.service_category_E7"
+            elif code in (8, 28):
+                cat = "electric_utility.service_category_E8"
+            elif code in (9, 29):
+                cat = "electric_utility.service_category_E9"
+            elif code in (10, 30, 40, 50):
+                cat = "electric_utility.service_category_E10"
+            elif code == 11:
+                cat = "electric_utility.service_category_E11"
+            else:
+                cat = "electric_utility.service_category_E0"
+            r.service_category_id = self.env.ref(cat).id
+
+            aux = self.env['infocoop_auxiliar'].search(
+                [("periodo", "=", r.periodo),
+                 ("orden", "=", r.orden),
+                 ("medidor", "=", r.medidor),
+                 ("item", "in", ["53", "54"]), ], limit=1)
+            if aux.item == "53":  # TS
+                r.ts_level = aux.var_auxi
+                r.ts_amount = aux.importe
+                r.ts_kwh = aux.cantidad
+            elif aux.item == "54":  # PE
+                r.pe_level = aux.var_auxi
+                r.pe_amount = aux.importe
+                r.pe_kwh = aux.cantidad
+            c += 1
+        print "process %s rows" % c
+
 
 class infocoop_auxiliar(models.Model, mirror_table_base):
 

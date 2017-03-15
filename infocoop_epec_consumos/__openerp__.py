@@ -19,47 +19,31 @@
 #
 ##############################################################################
 {
-    'name': 'Electric Public Utility',
+    'name': 'Infoocoop EPEC Consumos',
     'version': '9.0.0.0.1',
     'category': 'Tools',
     'sequence': 1,
     'summary': '',
     'description': """
-
-Electric Public Utility
+Infoocoop EPEC Consumos
 =======================
-
-This module implements functionality for a electric public utility.
-Based on the experience of the "Cooperativa Anisacate" cooperative.
-Uses the Argentine tax & legal regulations and particularly those of the province of "Córdoba"
-through the regulator ERSeP.
-
-    """,
-    'author':  'Fernando Hidalgo',
+This module implements requirements for ERSEP urgently.
+In the future is package will be necessary
+""",
+    'author': 'Fernando Hidalgo',
     'website': 'www.hidalgofernando.com.ar',
     'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
-        'base',
- #       'coop_members',
-        'l10n_ar_afipws_fe',
-        'l10n_ar_account',
-        'date_range',
+        'infocoop',
     ],
     'external_dependencies': {
- #       'python': ['dbfread', 'hashlib'],
+        # 'python': ['dbfread', 'hashlib'],
     },
     'data': [
-        'data/account.document.type.csv',
-        'data/account_tax_group.xml',
-        'data/accounts_chart.xml',
-        'data/product_data.xml',
-        'views/connection_view.xml',
-        'views/contrat_view.xml',
-        'views/res_partner_view.xml',
-        'views/service_category_view.xml',
-        'security/ir.model.access.csv',
+        'tab_fact_view.xml',
+        'report.xml',
     ],
     'demo': [
     ],

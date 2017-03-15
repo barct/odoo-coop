@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Custom report.-->
+<openerp>
+    <data>
+        <report
+        id="custom_report_ersep_consumos"
+        model="infocoop_tab_fact"
+        string="Liquidacion de SP"
+        report_type="qweb-html"
+        name="infocoop_epec_consumos.report_example_report_view"
+        attachment_use="False"
+        file="infocoop_epec_consumos.report_example_report_view"
+        />
+
+
+
+
+        <template id="report_example_report_view">
+            
+            <t t-call="report.html_container">                    
+                <!-- REMEMBER, docs is the selected records either in form view or checked in list view (usually). So the line below says use the following template for each record that has been selected. -->
+                <t t-foreach="data" t-as="dat">
+                    <t>          
+                     <div class="page">    
+                        <h1>Resumen de Liquidaciones por Segmentos - Periodo: <t t-esc="dat['doc'].periodo"/></h1>
+                        <table>
+                         <tr>
+                            <th>Code</th>
+                            <th>N° Conexiones</th>
+                            <th>Consumo kWh</th>
+                            <th>Importe EE</th>
+                            <th>Cargo Fijo</th>
+                            <th>Impuestos</th>
+                            <th>Tarifa Social kWh</th>
+                            <th>Tarifa Social Importe</th>
+                            <th>Plan Estímulo kWh</th>
+                            <th>Plan Estímulo Importe</th>
+                            <th>Importe Otros</th>
+                         </tr>
+                          <t t-foreach="dat['values']" t-as="code">
+
+                         <tr>
+                            <td style="text-align: right;border-left: solid 1px; " nowrap="nowrap"><t t-esc="code"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="dat['values'][code].conexiones"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="dat['values'][code].consumo"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].monto_ee)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].cargo_fijo)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].monto_impuestos)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].consumo_ts)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].monto_ts)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].consumo_pe)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].monto_pe)"/></td>
+                            <td style="text-align: right;border-left: solid 1px; "><t t-esc="'%.2f'%(dat['values'][code].monto_otros)"/></td>
+                        </tr>
+                            </t>
+
+                        </table>    
+                     </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</openerp>

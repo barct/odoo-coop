@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="service_category_tree_view" model="ir.ui.view">
+
+	<field name="name">service_category.tree.view</field>
+	<field name="model">electric_utility.service_category</field>
+	<field name= "arch" type = "xml">
+	<tree string="Service Category">
+
+		<field name="code"/>
+		<field name="name"/>
+		<field name="ersep_code"/>
+		<field name="group_id"/>
+
+	</tree>
+	</field>
+</record>
+
+
+<record id="action_service_category" model="ir.actions.act_window">
+	<field name="name">service_category Action</field>
+	<field name="res_model">electric_utility.service_category</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+<menuitem id="menu_electric_utility_service_category" parent="menu_electric_utility_connections" name="Service Categories" action="action_service_category"/>
+</data>
+</openerp>

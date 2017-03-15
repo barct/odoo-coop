@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>    
+        <record model="electric_utility.service_category_group" id="service_category_group_ur">
+            <field name="name">Usuarios Residenciales</field>
+            <field name="code">UR</field>
+            <field name="segments">150,500,700,1400</field>
+        </record>
+        <record model="electric_utility.service_category_group" id="service_category_group_nr">
+            <field name="name">Usuarios No Residenciales</field>
+            <field name="code">NR</field>
+            <field name="segments">2000</field>
+        </record>
+        <record model="electric_utility.service_category_group" id="service_category_group_ap">
+            <field name="name">Alumbrado Público</field>
+            <field name="code">AP</field>
+        </record>
+        <record model="electric_utility.service_category_group" id="service_category_group_dc">
+            <field name="name">Demanda Contratada</field>
+            <field name="code">DC</field>
+        </record>
+    </data>
+    <data>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E0">
+            <field name="name">Desconocido</field>
+            <field name="code">E0</field>
+        </record>  
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E1">
+            <field name="name">Residencial</field>
+            <field name="code">E1</field>
+            <field name="ersep_code">T1.1</field>
+            <field name="group_id" ref="service_category_group_ur"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E2">
+            <field name="name">Industrial</field>
+            <field name="code">E2</field>
+            <field name="ersep_code">T2.2</field>
+            <field name="group_id" ref="service_category_group_nr"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E3">
+            <field name="name">Alumbrado Público</field>
+            <field name="code">E3</field>
+            <field name="ersep_code">T7.1</field>
+            <field name="group_id" ref="service_category_group_ap"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E6">
+            <field name="name">Comercial</field>
+            <field name="code">E6</field>
+            <field name="ersep_code">T2.1</field>
+            <field name="group_id" ref="service_category_group_nr"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E7">
+            <field name="name">Rural</field>
+            <field name="code">E7</field>
+            <field name="ersep_code">T5.1</field>
+            <field name="group_id" ref="service_category_group_nr"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E8">
+            <field name="name">Sector Público</field>
+            <field name="code">E8</field>
+            <field name="ersep_code">T6.1</field>
+            <field name="group_id" ref="service_category_group_nr"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E9">
+            <field name="name">Comercial Combinada</field>
+            <field name="code">E9</field>
+            <field name="ersep_code">T2.1</field>
+            <field name="group_id" ref="service_category_group_nr"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E10">
+            <field name="name">Residencial Estacional</field>
+            <field name="code">E10</field>
+            <field name="ersep_code">T1.8</field>
+            <field name="group_id" ref="service_category_group_ur"/>
+        </record>
+        <record model="electric_utility.service_category" id="electric_utility.service_category_E11">
+            <field name="name">Demanda Contratada</field>
+            <field name="code">E11</field>
+            <field name="ersep_code">T3.1.1</field>
+            <field name="group_id" ref="service_category_group_dc"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="True">
+		<record model="infocoop_epec_consumos.segmentos" id="segmento_ur1">
+			<field name="name">UR</field>
+			<field name="group_id" ref="ersep_regulations.service_category_group_ur" />
+			<field name="segments">150,500,700,1400</field>
+		</record>
+	</data>
+</openerp>
