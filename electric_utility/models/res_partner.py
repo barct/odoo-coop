@@ -5,7 +5,9 @@
 ##############################################################################
 from openerp import models, fields
 
-class PartnerContrats(models.Model):
-	_inherit = "res.partner"
 
-	contrat_ids = fields.One2many("electric_utility.contrat", "client_id", string="Contrats")
+class PartnerContrats(models.Model):
+    _inherit = "res.partner"
+
+    contrat_ids = fields.One2many(
+        "electric_utility.contrat", "client_id", string="Contrats")

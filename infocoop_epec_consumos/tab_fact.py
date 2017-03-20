@@ -114,7 +114,11 @@ class ParticularReport(models.AbstractModel):
                         code = "5000"
                     v.code = group + str(level) + "-" + code
                 else:
-                    v.code = group + str(level)
+                    if group == "NR" and level == 3:
+                        v.code = group + str(level) + \
+                            "-" + l.service_category_id.code
+                    else:
+                        v.code = group + str(level)
 
                 if v.code in values:
                     values[v.code] += v
